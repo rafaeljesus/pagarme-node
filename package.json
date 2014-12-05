@@ -2,7 +2,7 @@
   "name": "pagarme-node",
   "version": "0.0.1",
   "description": "Pagar.me Nodejs Library",
-  "main": "index.js",
+  "main": "./lib",
   "scripts": {
     "test": "mocha"
   },
@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "lodash": "~2.4.1",
-    "bluebird": "~2.3.11"
+    "bluebird": "~2.3.11",
+    "crypto": "0.0.3"
   }
 }

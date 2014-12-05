@@ -5,7 +5,7 @@ var gulp    = require('gulp')
   , argv    = require('yargs').argv;
 
 gulp.task('lint', function() {
-  return gulp.src(['./lib/**/*.js', './test/**/*.js', 'gulpfile.js'])
+  return gulp.src(['./lib/**/*.js', './spec/**/*[sS]pec.js', 'gulpfile.js'])
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('jshint-stylish'))
     .pipe(plugins.jshint.reporter('fail'));
@@ -17,7 +17,7 @@ gulp.task('cover', function() {
 });
 
 gulp.task('test', ['cover'], function () {
-  return gulp.src('./test/**/*.js')
+  return gulp.src('./spec/**/*[sS]pec.js')
     .pipe(plugins.mocha({
       grep: argv.grep
     }))

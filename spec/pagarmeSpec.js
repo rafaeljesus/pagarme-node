@@ -1,0 +1,36 @@
+'use strict';
+
+var expect    = require('chai').expect
+  , sinon     = require('sinon')
+  , crypto    = require('crypto')
+  , client    = require('../')
+  , Pagarme   = client.Pagarme;
+
+describe('Pagarme', function() {
+
+  var pagarme;
+
+  beforeEach(function() {
+    pagarme = client('k');
+  });
+
+  it('should be called with new', function() {
+    expect(Pagarme).to.throw(/called with new/);
+  });
+
+  it('should provide an API key', function() {
+    expect(function() {
+      return new Pagarme();
+    }).to.throw(/API key/);
+  });
+
+  it('should configure the API key', function() {
+    expect(new Pagarme({ key: 'k' })).to.have.property('key', 'k');
+  });
+
+  it('should validate Fingerprint', function() {
+    var validFingerprint = pagarme.validateFingerprint(123, '123#' + crypto.createHash('sha1').digest('hex') + pagarme.key);
+    expect(validFingerprint).to.be.true;
+  });
+
+});
