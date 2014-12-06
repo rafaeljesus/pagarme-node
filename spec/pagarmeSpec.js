@@ -8,10 +8,10 @@ var expect    = require('chai').expect
 
 describe('Pagarme', function() {
 
-  var pagarme;
+  var pagarme, key = 'ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo';
 
   beforeEach(function() {
-    pagarme = client('k');
+    pagarme = client(key);
   });
 
   it('should be called with new', function() {
@@ -25,7 +25,11 @@ describe('Pagarme', function() {
   });
 
   it('should configure the API key', function() {
-    expect(new Pagarme({ key: 'k' })).to.have.property('key', 'k');
+    expect(new Pagarme({ key: key })).to.have.property('key', key);
+  });
+
+  it('should read card encryption public key permission', function() {
+    expect(pagarme.cardEncryptionPubKey).to.not.be.equal(undefined);
   });
 
   it('should validate Fingerprint', function() {
