@@ -8,7 +8,7 @@ Pagar.me Node.js library
 ## Setup
 ```bash
 $ npm install pagarme
-
+```
 ```js
 var pagarme = require('pagarme')('api_key');
 // or
