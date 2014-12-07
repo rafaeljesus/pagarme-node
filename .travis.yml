@@ -5,6 +5,7 @@ env:
   CODECLIMATE_REPO_TOKEN=1df0094d49925b4e39c410adcb512ddd938a4a8a91c6e7d55c51709f7d8ad8a9
 before_script:
   - export PATH="$PATH:$(npm bin)"
+  - npm install
 script:
   - gulp lint
   - gulp test
