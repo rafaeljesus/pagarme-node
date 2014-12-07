@@ -7,7 +7,7 @@ before_script:
   - export PATH="$PATH:$(npm bin)"
 script:
   - gulp lint
-  - npm test
+  - gulp test
 after_script:
   - npm install -g codeclimate-test-reporter
   - codeclimate < ./coverage/lcov.info
