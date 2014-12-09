@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">lib/resource.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">100% <small>(13 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(10 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">50% <small>(1 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">100% <small>(6 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(4 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">100% <small>(13 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(10 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -249,38 +249,18 @@
 31
 32
 33
-34
-35
-36
-37
-38
-39
-40</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+34</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -294,33 +274,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
-var _            = require('lodash')
-  , Promise      = require('bluebird');
+var _               = require('lodash')
+  , EventEmitter    = require('events').EventEmitter
+  , Promise         = require('bluebird')
+  , PagarmeResource = require('./pagarme_resource');
 &nbsp;
-function PagarmeResource(data) {
-  _.extend(this, data);
-}
+function Resource() {
+  PagarmeResource.apply(this, arguments);
+};
 &nbsp;
-PagarmeResource.findBy = Promise.method(function(options) {
-  options = options || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
-  return this.pagarme.request(_.extend({
-    path: this._options.template(options),
-    query: options
-  }, options))
-  .bind(this)
-  .then(function(data) {
-    return new this(data);
-  });
-});
-&nbsp;
-exports.create = function(name, options) {
-  var Resource = function() {
-    PagarmeResource.apply(this, arguments);
-  };
-&nbsp;
-  _.extend(Resource, PagarmeResource, {
+Resource.create = function(name, options) {
+  _.extend(Resource, new EventEmitter(), EventEmitter.prototype, PagarmeResource, {}, {
     _name: name,
     _options: _.extend({}, options, {
       template: _.template(options.path)
@@ -331,14 +305,22 @@ exports.create = function(name, options) {
     return _.extend(Resource, {
       pagarme: pagarme
     });
+  },
+  {
+    on: function() {
+      Resource.on.apply(Resource, arguments);
+      return this;
+    }
   });
 };
+&nbsp;
+module.exports = Resource;
 &nbsp;</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 07 2014 01:15:52 GMT-0200 (BRST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 07 2014 20:35:12 GMT-0200 (BRST)</div>
 </div>
 
 <script src="../prettify.js"></script>

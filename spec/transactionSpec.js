@@ -7,6 +7,8 @@ var expect        = require('chai').use(require('chai-as-promised')).expect
 
 describe('Transaction', function() {
 
+  var transactionFixture = require('./fixtures/transaction');
+
   after(nock.cleanAll);
 
   it('should find transaction by hash', function() {
@@ -18,6 +20,15 @@ describe('Transaction', function() {
           expect(transactions[key].customer).to.have.property('document_number', '36433809847');
         });
     });
+  });
+
+  it('should find transaction by id', function() {
+    return Transaction.create(transactionFixture)
+      .then(function(res) {
+        return Transaction.findById(res.id).then(function(res) {
+          console.log(res);
+        });
+      })
   });
 
 });
