@@ -11,7 +11,7 @@ describe('Transaction', function() {
 
   after(nock.cleanAll);
 
-  it('should find transaction by hash', function() {
+  /*it('should find transaction by hash', function() {
     var query = { customer: { document_number:  36433809847 }, page: 1, count: 10 };
     return Transaction.findBy(query).then(function(transactions) {
       Object
@@ -20,7 +20,7 @@ describe('Transaction', function() {
           expect(transactions[key].customer).to.have.property('document_number', '36433809847');
         });
     });
-  });
+  });*/
 
   it('should find transaction by id', function() {
     Transaction.create(transactionFixture).then(function(res) {

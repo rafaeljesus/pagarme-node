@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">lib/pagarme.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">93.33% <small>(28 / 30)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">87.1% <small>(27 / 31)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">42.86% <small>(6 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">21.43% <small>(3 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">100% <small>(7 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">85.71% <small>(6 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">93.1% <small>(27 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">90% <small>(27 / 30)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -278,8 +278,7 @@
 60
 61
 62
-63
-64</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+63</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -302,29 +301,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -381,20 +379,19 @@ Pagarme.prototype.url = function(options) {
 &nbsp;
 Pagarme.prototype.request = function(options) {
   options = _.defaults(options, { method: 'GET', query: {} });
-  return needle.requestAsync(
-    options.method,
-    this.url(options),
-    generateQuery({ api_key: this.key }, options.query), { timeout: 5000 })
-  .bind(this)
-  .spread(function(res, body) {
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (res.statusCode !== 202 &amp;&amp; res.statusCode &lt; 400) return body;
-<span class="cstat-no" title="statement not covered" >    var message = body.error ? body.error.message : http.STATUS_CODES[res.statusCode] || 'Unknown';</span>
-<span class="cstat-no" title="statement not covered" >    throw _.extend(new this.PagarmeError(message), {</span>
-      type: body.error ? body.error.type : 'unknown',
-      body: body,
-      statusCode: res.statusCode
+  var requestParams = generateQuery({ api_key: this.key, format: 'json' }, options.query);
+  return needle
+    .request(options.method, this.url(options), requestParams, { timeout: 5000 })
+    .bind(this)
+    .spread(<span class="fstat-no" title="function not covered" >function(res, body) {</span>
+<span class="cstat-no" title="statement not covered" >      if (res.statusCode !== 202 &amp;&amp; res.statusCode &lt; 400) <span class="cstat-no" title="statement not covered" >return body;</span></span>
+<span class="cstat-no" title="statement not covered" >      var message = body.error ? body.error.message : http.STATUS_CODES[res.statusCode] || 'Unknown';</span>
+<span class="cstat-no" title="statement not covered" >      throw _.extend(new this.PagarmeError(message), {</span>
+        type: body.error ? body.error.type : 'unknown',
+        body: body,
+        statusCode: res.statusCode
+      });
     });
-  });
 };
 &nbsp;
 Pagarme.prototype.validateFingerprint = function(id, fingerprint) {
@@ -410,7 +407,7 @@ module.exports = Pagarme;
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Dec 09 2014 22:15:02 GMT-0200 (BRST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 10 2014 00:00:28 GMT-0200 (BRST)</div>
 </div>
 
 <script src="../prettify.js"></script>
