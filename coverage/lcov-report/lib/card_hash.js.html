@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for lib/pagarme_resource.js</title>
+    <title>Code coverage report for lib/card_hash.js</title>
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="../prettify.css">
@@ -196,23 +196,23 @@
 </head>
 <body>
 <div class="header medium">
-    <h1>Code coverage report for <span class="entity">lib/pagarme_resource.js</span></h1>
+    <h1>Code coverage report for <span class="entity">lib/card_hash.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">77.78% <small>(14 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">60% <small>(6 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">50% <small>(2 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">50% <small>(4 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">25% <small>(1 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">77.78% <small>(14 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">60% <small>(6 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">lib/</a> &#187; pagarme_resource.js</div>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">lib/</a> &#187; card_hash.js</div>
 </div>
 <div class="body">
 <pre><table class="coverage">
@@ -245,46 +245,13 @@
 27
 28
 29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+30</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -293,76 +260,49 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
-var _            = require('lodash')
-  , Promise      = require('bluebird');
+var _       = require('lodash')
+  , ursa    = require('ursa')
+  , Promise = require('bluebird');
 &nbsp;
-function PagarmeResource(data) {
-  _.extend(this, data);
+<span class="fstat-no" title="function not covered" >function CardHash() {</span> }
+&nbsp;
+<span class="fstat-no" title="function not covered" >function cardDataParams(options) {</span>
+<span class="cstat-no" title="statement not covered" >  return {</span>
+    card_number: options.card_number,
+    card_holder_name: options.card_holder_name,
+    card_expiration_date: options.card_expiration_month + options.card_expiration_year,
+    card_cvv: options.card_cvv
+  }
 }
 &nbsp;
-PagarmeResource.findBy = Promise.method(function(options) {
-  options = options || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
-  return this.pagarme.request(_.extend({
-    path: this._options.template(options),
-    query: options
-  }, options))
-  .bind(this)
-  .then(function(data) {
-    return new this(data);
-  });
-});
-&nbsp;
-PagarmeResource.findById = Promise.method(<span class="fstat-no" title="function not covered" >function(id) {</span>
-<span class="cstat-no" title="statement not covered" >  return this.pagarme.request(_.extend({</span>
-    path: this._options.path + '/' + id,
-    query: { id: id }
-  }))
-  .bind(this)
+CardHash.generate = Promise.method(function(pagarme, options) {
+  return pagarme.request({
+    path: '/transactions/card_hash_key'
+  })
   .then(<span class="fstat-no" title="function not covered" >function(data) {</span>
-<span class="cstat-no" title="statement not covered" >    return new this(data);</span>
+<span class="cstat-no" title="statement not covered" >    var key = ursa.createPublicKey(new Buffer(data.public_key));</span>
+<span class="cstat-no" title="statement not covered" >    var cardJSON = JSON.stringify(cardDataParams(options));</span>
+<span class="cstat-no" title="statement not covered" >    return data.id + '_' + key.encrypt(new Buffer(cardJSON, 'utf8'), 'utf8', 'base64', ursa.RSA_PKCS1_PADDING);</span>
   });
 });
 &nbsp;
-PagarmeResource.create = Promise.method(function(options) {
-  options = options || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
-  var self = this;
-<span class="fstat-no" title="function not covered" >  function create() {</span>
-<span class="cstat-no" title="statement not covered" >    return self.pagarme.request(_.extend({</span>
-      path: self._options.path,
-      method: 'POST',
-      query: options
-    }), options)
-    .then(<span class="fstat-no" title="function not covered" >function(data) {</span>
-<span class="cstat-no" title="statement not covered" >      return new self(data);</span>
-    });
-  }
-  this.emit('beforeCreate', options, create);
-});
-&nbsp;
-module.exports = PagarmeResource;
+module.exports = CardHash;
 &nbsp;</pre></td></tr>
 </table></pre>
 

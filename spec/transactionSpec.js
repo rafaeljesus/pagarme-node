@@ -23,8 +23,7 @@ describe('Transaction', function() {
   });
 
   it('should find transaction by id', function() {
-    return Transaction.create(transactionFixture)
-      .then(function(res) {
+    Transaction.create(transactionFixture).then(function(res) {
         return Transaction.findById(res.id).then(function(res) {
           console.log(res);
         });
