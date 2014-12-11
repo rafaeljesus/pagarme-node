@@ -11,21 +11,23 @@ describe('Transaction', function() {
 
   after(nock.cleanAll);
 
-  /*it('should find transaction by hash', function() {
+  it('should find transaction by hash', function() {
     var query = { customer: { document_number:  36433809847 }, page: 1, count: 10 };
-    return Transaction.findBy(query).then(function(transactions) {
+    Transaction.findBy(query).then(function(transactions) {
       Object
         .keys(transactions)
         .map(function(key) {
           expect(transactions[key].customer).to.have.property('document_number', '36433809847');
         });
     });
-  });*/
+  });
 
   it('should find transaction by id', function() {
-    Transaction.create(transactionFixture).then(function(res) {
-        return Transaction.findById(res.id).then(function(res) {
-          console.log(res);
+    Transaction
+      .create(transactionFixture)
+      .then(function(obj) {
+        Transaction.findById(obj.id).then(function(obj) {
+          expect(obj).to.not.be.undefined;
         });
       })
   });
