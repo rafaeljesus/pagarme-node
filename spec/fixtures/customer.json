@@ -1,0 +1,19 @@
+{
+  "customer": {
+    "name": "Jose da Silva",
+    "document_number": "36433809847",
+    "email": "henrique@pagar.me",
+    "address": {
+      "street": "Av. Brigadeiro Faria Lima",
+      "neighborhood": "Itaim bibi",
+      "zipcode": "01452000",
+      "street_number": "2941"
+    },
+    "phone": {
+      "add": "12",
+      "number": "981433533"
+    },
+    "sex": "M",
+    "born_at": "1970-10-11"
+  }
+}

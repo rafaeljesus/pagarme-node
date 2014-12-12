@@ -2,12 +2,14 @@
 
 var expect        = require('chai').use(require('chai-as-promised')).expect
   , nock          = require('nock')
+  , _             = require('lodash')
   , pagarme       = require('../')('ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo')
   , Transaction   = pagarme.Transaction;
 
 describe('Transaction', function() {
 
   var transactionFixture = require('./fixtures/transaction');
+  var customerFixture= require('./fixtures/customer');
 
   after(nock.cleanAll);
 
@@ -34,7 +36,17 @@ describe('Transaction', function() {
       });
   });
 
-  it('should refund transaction with customer ', function() {});
+  it('should refund transaction with customer ', function() {
+    Transaction
+      .create(_.extend(transactionFixture, customerFixture))
+      .then(function(obj) {
+        expect(obj.customer.id).to.be.ok;
+        expect(obj.customer.document_type).to.be.equal('cpf');
+        expect(obj.customer.name).to.be.equal('Jose da Silva');
+        expect(obj.customer.burn_at).to.be.ok;
+      });
+  });
+
   it('should create transaction with customer', function() {});
   it('should create transaction with boleto', function() { });
   it('should charge with a saved card', function() { });
@@ -63,7 +75,7 @@ describe('Transaction', function() {
         return Transaction.findById(obj.id);
       })
       .then(function(obj) {
-        expect(obj).to.not.be.undefined;
+        expect(obj).to.be.ok;
       })
   });
 
@@ -71,8 +83,8 @@ describe('Transaction', function() {
     Transaction
       .calculateInstallments({ amount: transactionFixture.amount, interest_rate: 0 })
       .then(function(res) {
-        expect(res.installments).to.be.equal(12);
-        expect(res.installments[2].installment_amount).to.be.equal(5000);
+        expect([res.installments].length).to.be.equal(1);
+        expect(res.installments[2].installment_amount).to.be.equal(500);
       });
   });
 
