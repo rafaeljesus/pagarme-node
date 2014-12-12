@@ -42,7 +42,6 @@ describe('Transaction', function() {
   it('should send metadata', function() { });
   it('should capture a transaction and pass an amount', function() { });
   it('should validate invalid transaction', function() {});
-  it('should calculate installments', function() {});
 
   it('should find transaction by hash', function() {
     var query = { customer: { document_number:  36433809847 }, page: 1, count: 10 };
@@ -66,6 +65,15 @@ describe('Transaction', function() {
       .then(function(obj) {
         expect(obj).to.not.be.undefined;
       })
+  });
+
+  it('should calculate installments', function() {
+    Transaction
+      .calculateInstallments({ amount: transactionFixture.amount, interest_rate: 0 })
+      .then(function(res) {
+        expect(res.installments).to.be.equal(12);
+        expect(res.installments[2].installment_amount).to.be.equal(5000);
+      });
   });
 
 });
