@@ -8,8 +8,12 @@ var expect        = require('chai').use(require('chai-as-promised')).expect
 
 describe('Transaction', function() {
 
-  var transactionFixture = require('./fixtures/transaction');
-  var customerFixture= require('./fixtures/customer');
+  var transactionFixture, customerFixture;
+
+  before(function() {
+    transactionFixture = require('./fixtures/transaction');
+    customerFixture = require('./fixtures/customer');
+  });
 
   after(nock.cleanAll);
 
@@ -43,7 +47,7 @@ describe('Transaction', function() {
         expect(obj.customer.id).to.be.ok;
         expect(obj.customer.document_type).to.be.equal('cpf');
         expect(obj.customer.name).to.be.equal('Jose da Silva');
-        expect(obj.customer.burn_at).to.be.ok;
+        expect(obj.customer.born_at).to.be.ok;
       });
   });
 
@@ -60,11 +64,9 @@ describe('Transaction', function() {
     Transaction
       .findBy(query)
       .then(function(transactions) {
-        Object
-          .keys(transactions)
-          .map(function(key) {
-            expect(transactions[key].customer).to.have.property('document_number', '36433809847');
-          });
+        Object.keys(transactions).map(function(key) {
+          expect(transactions[key].customer).to.have.property('document_number', '36433809847');
+        });
       });
   });
 
