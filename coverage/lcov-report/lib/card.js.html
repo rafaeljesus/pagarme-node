@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for All files</title>
+    <title>Code coverage report for lib/card.js</title>
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="prettify.css">
+    <link rel="stylesheet" href="../prettify.css">
 
     <style>
         body, html {
@@ -195,64 +195,81 @@
     </style>
 </head>
 <body>
-<div class="header medium">
-    <h1>Code coverage report for <span class="entity">All files</span></h1>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">lib/card.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">76.12% <small>(51 / 67)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">80% <small>(4 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">18.75% <small>(3 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">50% <small>(10 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 1)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">77.27% <small>(51 / 66)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">80% <small>(4 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"></div>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">lib/</a> &#187; card.js</div>
 </div>
 <div class="body">
-<div class="coverage-summary">
-<table>
-<thead>
-<tr>
-   <th data-col="file" data-fmt="html" data-html="true" class="file">File</th>
-   <th data-col="pic" data-type="number" data-fmt="html" data-html="true" class="pic"></th>
-   <th data-col="statements" data-type="number" data-fmt="pct" class="pct">Statements</th>
-   <th data-col="statements_raw" data-type="number" data-fmt="html" class="abs"></th>
-   <th data-col="branches" data-type="number" data-fmt="pct" class="pct">Branches</th>
-   <th data-col="branches_raw" data-type="number" data-fmt="html" class="abs"></th>
-   <th data-col="functions" data-type="number" data-fmt="pct" class="pct">Functions</th>
-   <th data-col="functions_raw" data-type="number" data-fmt="html" class="abs"></th>
-   <th data-col="lines" data-type="number" data-fmt="pct" class="pct">Lines</th>
-   <th data-col="lines_raw" data-type="number" data-fmt="html" class="abs"></th>
-</tr>
-</thead>
-<tbody><tr>
-	<td class="file medium" data-value="lib/"><a href="lib/index.html">lib/</a></td>
-	<td data-value="76.12" class="pic medium"><span class="cover-fill" style="width: 76px;"></span><span class="cover-empty" style="width:24px;"></span></td>
-	<td data-value="76.12" class="pct medium">76.12%</td>
-	<td data-value="67" class="abs medium">(51&nbsp;/&nbsp;67)</td>
-	<td data-value="18.75" class="pct low">18.75%</td>
-	<td data-value="16" class="abs low">(3&nbsp;/&nbsp;16)</td>
-	<td data-value="50" class="pct medium">50%</td>
-	<td data-value="20" class="abs medium">(10&nbsp;/&nbsp;20)</td>
-	<td data-value="77.27" class="pct medium">77.27%</td>
-	<td data-value="66" class="abs medium">(51&nbsp;/&nbsp;66)</td>
-	</tr>
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var assert    = require('assert')
+  , resource  = require('./resource');
+&nbsp;
+<span class="fstat-no" title="function not covered" >function preFind(options) {</span>
+<span class="cstat-no" title="statement not covered" >  assert(!(options.page &lt; 1 || options.count &lt; 1), 'Invalid Page Count');</span>
+}
+&nbsp;
+var Card = resource.create('Card', {
+  path: '/cards'
+})
+.on('preFind', preFind);
+&nbsp;
+module.exports = Card;
+&nbsp;</pre></td></tr>
+</table></pre>
 
-</tbody>
-</table>
-</div>
 </div>
 <div class="footer">
     <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 14 2014 11:09:35 GMT-0200 (BRST)</div>
 </div>
 
-<script src="prettify.js"></script>
+<script src="../prettify.js"></script>
 
 <script src="https://yui-s.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
 <script>
