@@ -8,11 +8,12 @@ var expect        = require('chai').use(require('chai-as-promised')).expect
 
 describe('Transaction', function() {
 
-  var transactionFixture, customerFixture;
+  var transactionFixture, customerFixture, metadataFixture;
 
   before(function() {
-    transactionFixture = require('./fixtures/transaction');
-    customerFixture = require('./fixtures/customer');
+    transactionFixture = require('./fixtures/transaction')
+    customerFixture = require('./fixtures/customer')
+    metadataFixture = require('./fixtures/metadata');
   });
 
   after(nock.cleanAll);
@@ -29,18 +30,7 @@ describe('Transaction', function() {
       });
   });
 
-  it('should refund transaction', function() {
-    Transaction
-      .create(transactionFixture)
-      .then(function(obj) {
-        return Transaction.refund(obj.id);
-      })
-      .then(function(obj) {
-        expect(obj.status).to.be.equal('refunded');
-      });
-  });
-
-  it('should refund transaction with customer ', function() {
+  it('should create transaction with customer', function() {
     Transaction
       .create(_.extend(transactionFixture, customerFixture))
       .then(function(obj) {
@@ -51,13 +41,73 @@ describe('Transaction', function() {
       });
   });
 
-  it('should create transaction with customer', function() {});
-  it('should create transaction with boleto', function() { });
-  it('should charge with a saved card', function() { });
-  it('should charge with a unsaved card', function() { });
-  it('should send metadata', function() { });
-  it('should capture a transaction and pass an amount', function() { });
-  it('should validate invalid transaction', function() {});
+  it('should create transaction with boleto', function() {
+    Transaction
+      .create({ payment_method: 'boleto', amount: 1000 })
+      .then(function(obj) {
+        expect(obj.payment_method).to.be.equal('boleto');
+        expect(obj.status).to.be.equal('waiting_payment');
+        expect(obj.amount).to.be.equal(1000);
+      });
+  });
+
+  it('should refund transaction', function() {
+    Transaction
+      .create(transactionFixture)
+      .then(function(obj) {
+        return Transaction.refund(obj.id);
+      })
+      .then(function(obj) {
+        expect(obj.status).to.be.equal('refunded');
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  });
+
+  it('should refund transaction with customer ', function() {
+    Transaction
+      .create(_.extend(transactionFixture, customerFixture))
+      .then(function(obj) {
+        return Transaction.refund(obj.id);
+      })
+      .then(function(obj) {
+        expect(obj.customer.id).to.be.ok;
+        expect(obj.customer.document_type).to.be.equal('cpf');
+        expect(obj.customer.name).to.be.equal('Jose da Silva');
+        expect(obj.customer.born_at).to.be.ok;
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  });
+
+  it('should send metadata', function() {
+    Transaction
+      .create(_.extend(transactionFixture, metadataFixture))
+      .then(function(obj) {
+        expect(obj.metadata.event.id).to.be.equal(metadataFixture.metadata.event.id);
+      });
+  });
+
+  it('should capture a transaction and pass an amount', function() {
+    Transaction
+      .create(_.extend(transactionFixture, { capture: false }))
+      .then(function(obj) {
+        expect(obj.status).to.be.equal('authorized');
+        return Transaction.capture(obj.id, { amount: 1000 });
+      })
+      .then(function(obj) {
+        expect(obj.status).to.be.equal('paid');
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  });
+
+  it('should validate invalid transaction', function() {
+
+  });
 
   it('should find transaction by hash', function() {
     var query = { customer: { document_number:  36433809847 }, page: 1, count: 10 };
