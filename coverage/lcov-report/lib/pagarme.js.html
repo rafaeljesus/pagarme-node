@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">lib/pagarme.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">83.33% <small>(25 / 30)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">90% <small>(27 / 30)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">20% <small>(2 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">30% <small>(3 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">71.43% <small>(5 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">85.71% <small>(6 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">86.21% <small>(25 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">93.1% <small>(27 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -278,7 +278,8 @@
 60
 61
 62
-63</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+63
+64</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -291,35 +292,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -333,8 +335,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -353,13 +355,14 @@ var assert      = require('assert')
   , crypto      = require('crypto');
 &nbsp;
 function Pagarme(config) {
-  config = config || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+  config = config || {};
   assert(this instanceof Pagarme, 'Pagarme must be called with new');
   assert(!!config.key, 'You need to configure a API key before performing requests.');
   this.key = config.key;
   this.cardEncryptionPubKey = fs.readFileSync('certs/public_key.pem', 'utf8');
   this.endpoint = 'https://api.pagar.me/%s';
-  this.Card = require('./card')(this);
+  // this.Card = require('./card')(this);
+  this.BankAccount = require('./bank_account')(this);
   // this.Transaction = require('./transaction')(this);
 }
 &nbsp;
@@ -394,9 +397,9 @@ Pagarme.prototype.request = function(options) {
     });
 };
 &nbsp;
-Pagarme.prototype.validateFingerprint = <span class="fstat-no" title="function not covered" >function(id, fingerprint) {</span>
-<span class="cstat-no" title="statement not covered" >  var hash = id + '#' + crypto.createHash('sha1').digest('hex') + this.key;</span>
-<span class="cstat-no" title="statement not covered" >  return hash == fingerprint;</span>
+Pagarme.prototype.validateFingerprint = function(id, fingerprint) {
+  var hash = id + '#' + crypto.createHash('sha1').digest('hex') + this.key;
+  return hash == fingerprint;
 };
 &nbsp;
 Pagarme.PagarmeError = Pagarme.prototype.PagarmeError = createError('PagarmeError');
@@ -407,7 +410,7 @@ module.exports = Pagarme;
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 14 2014 11:09:35 GMT-0200 (BRST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 14 2014 13:16:28 GMT-0200 (BRST)</div>
 </div>
 
 <script src="../prettify.js"></script>

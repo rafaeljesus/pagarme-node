@@ -21,4 +21,14 @@ describe('Card', function() {
         expect(obj.id).to.be.ok;
       });
   });
+
+  it('should find by id', function() {
+    Card.create(cardFixture)
+      .then(function(obj) {
+        return Card.findById(obj.id);
+      })
+      .then(function(obj) {
+        expect(obj.id).to.be.ok;
+      });
+  });
 });
