@@ -20,9 +20,6 @@ describe('BankAccount', function() {
       .create(bankAccountFixture)
       .then(function(obj) {
         expect(obj.id).to.be.ok;
-      })
-      .catch(function(err) {
-        console.log(err);
       });
   });
 

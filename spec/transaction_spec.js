@@ -31,8 +31,9 @@ describe('Transaction', function() {
   });
 
   it('should create transaction with customer', function() {
+    var transactionWithCustomer = _.extend(transactionFixture, customerFixture);
     Transaction
-      .create(_.extend(transactionFixture, customerFixture))
+      .create(transactionWithCustomer)
       .then(function(obj) {
         expect(obj.customer.id).to.be.ok;
         expect(obj.customer.document_type).to.be.equal('cpf');
@@ -59,15 +60,13 @@ describe('Transaction', function() {
       })
       .then(function(obj) {
         expect(obj.status).to.be.equal('refunded');
-      })
-      .catch(function(err) {
-        console.log(err);
       });
   });
 
   it('should refund transaction with customer ', function() {
+    var transactionWithCustomer = _.extend(transactionFixture, customerFixture);
     Transaction
-      .create(_.extend(transactionFixture, customerFixture))
+      .create(transactionWithCustomer)
       .then(function(obj) {
         return Transaction.refund(obj.id);
       })
@@ -76,9 +75,6 @@ describe('Transaction', function() {
         expect(obj.customer.document_type).to.be.equal('cpf');
         expect(obj.customer.name).to.be.equal('Jose da Silva');
         expect(obj.customer.born_at).to.be.ok;
-      })
-      .catch(function(err) {
-        console.log(err);
       });
   });
 
@@ -90,6 +86,7 @@ describe('Transaction', function() {
       });
   });
 
+  // FIXME AssertionError: expected 'paid' to equal 'authorized'
   it('should capture a transaction and pass an amount', function() {
     Transaction
       .create(_.extend(transactionFixture, { capture: false }))
@@ -99,9 +96,6 @@ describe('Transaction', function() {
       })
       .then(function(obj) {
         expect(obj.status).to.be.equal('paid');
-      })
-      .catch(function(err) {
-        console.log(err);
       });
   });
 
@@ -109,7 +103,7 @@ describe('Transaction', function() {
 
   });
 
-  it('should find transaction by hash', function() {
+  it('should search transaction by criteria', function() {
     var query = { customer: { document_number:  36433809847 }, page: 1, count: 10 };
     Transaction
       .findBy(query)
@@ -128,7 +122,7 @@ describe('Transaction', function() {
       })
       .then(function(obj) {
         expect(obj).to.be.ok;
-      })
+      });
   });
 
   it('should calculate installments', function() {
