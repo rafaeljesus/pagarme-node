@@ -99,10 +99,6 @@ describe('Transaction', function() {
       });
   });
 
-  it('should validate invalid transaction', function() {
-
-  });
-
   it('should search transaction by criteria', function() {
     var query = { customer: { document_number:  36433809847 }, page: 1, count: 10 };
     Transaction
@@ -131,6 +127,55 @@ describe('Transaction', function() {
       .then(function(res) {
         expect([res.installments].length).to.be.equal(1);
         expect(res.installments[2].installment_amount).to.be.equal(500);
+      });
+  });
+
+  describe('validate', function() {
+    it('should validate card number', function() {
+      transactionFixture.card_number = 123456;
+      Transaction
+        .create(transactionFixture)
+        .catch(function(err) {
+          expect(err.type[0].parameter_name).to.be.equal('card_number');
+        });
+    });
+
+    it('should validate card holder name', function() {
+      delete transactionFixture.card_holder_name;
+      Transaction
+        .create(transactionFixture)
+        .catch(function(err) {
+          expect(err.type[0].parameter_name).to.be.equal('card_holder_name');
+        });
+    });
+
+    it('should validate card cvv', function() {
+      delete transactionFixture.card_cvv;
+      Transaction
+        .create(transactionFixture)
+        .catch(function(err) {
+          expect(err.type[0].parameter_name).to.be.equal('card_cvv');
+        })
+    });
+
+    it('should validate card_expiration_date', function() {
+      Transaction
+        .create({ card_number: '4111111111111111', amount: '1000', card_holder_name: 'Jose da Silva', card_expiration_date: '10' })
+        .catch(function(err) {
+          expect(err.type[0].parameter_name).to.be.equal('card_expiration_date');
+        })
+        .then(function() {
+          Transaction.create({ card_number: '4111111111111111', amount: '1000', card_holder_name: 'Jose da Silva', card_expiration_date: '12-1' });
+        })
+        .catch(function(err) {
+          expect(err.type[0].parameter_name).to.be.equal('card_expiration_date');
+        })
+        .then(function() {
+          Transaction.create({ card_number: '4111111111111111', amount: '1000', card_holder_name: 'Jose da Silva', card_expiration_date: '1216' });
+        })
+        .catch(function(err) {
+          expect(err.type[0].parameter_name).to.be.equal('card_expiration_date');
+        })
       });
   });
 
