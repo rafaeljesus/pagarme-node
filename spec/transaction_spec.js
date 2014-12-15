@@ -130,8 +130,8 @@ describe('Transaction', function() {
       });
   });
 
-  describe('validate', function() {
-    it('should validate card number', function() {
+  describe('should validate', function() {
+    it('card number', function() {
       transactionFixture.card_number = 123456;
       Transaction
         .create(transactionFixture)
@@ -140,7 +140,7 @@ describe('Transaction', function() {
         });
     });
 
-    it('should validate card holder name', function() {
+    it('card holder name', function() {
       delete transactionFixture.card_holder_name;
       Transaction
         .create(transactionFixture)
@@ -149,7 +149,7 @@ describe('Transaction', function() {
         });
     });
 
-    it('should validate card cvv', function() {
+    it('card cvv', function() {
       delete transactionFixture.card_cvv;
       Transaction
         .create(transactionFixture)
@@ -158,7 +158,7 @@ describe('Transaction', function() {
         })
     });
 
-    it('should validate card_expiration_date', function() {
+    it('card expiration date', function() {
       Transaction
         .create({ card_number: '4111111111111111', amount: '1000', card_holder_name: 'Jose da Silva', card_expiration_date: '10' })
         .catch(function(err) {

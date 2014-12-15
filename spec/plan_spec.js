@@ -33,4 +33,39 @@ describe('Plan', function() {
         });
       });
   });
+
+  describe('should validate', function() {
+    it('amount', function() {
+      Plan.create({ amount: -1 })
+        .catch(function(err) {
+          expect(err.type.parameter_name).to.be.equal('amount');
+        });
+    });
+
+    it('days as negative number', function() {
+      Plan.create({ amount: 1000, days: -1 })
+        .catch(function(err) {
+          expect(err.type.parameter_name).to.be.equal('days');
+        });
+    });
+
+    /*it('days as string', function() {
+      Plan
+        .create({ amount: 1000, days: 30, name: 'Gold Plan' })
+        .then(function(obj) {
+          Plan.update({ days: 'Gold Plan' });
+        })
+        .catch(function(err) {
+          expect(err.type.parameter_name).to.be.equal('days');
+        });
+    });*/
+
+    it('name', function() {
+      Plan.create({ amount: 1000, days: 30 })
+        .catch(function(err) {
+          expect(err.type.parameter_name).to.be.equal('name');
+        });
+    });
+  });
+
 });
