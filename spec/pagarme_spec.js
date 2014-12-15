@@ -1,7 +1,6 @@
 'use strict';
 
 var expect    = require('chai').expect
-  , sinon     = require('sinon')
   , crypto    = require('crypto')
   , client    = require('../')
   , Pagarme   = client.Pagarme;

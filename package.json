@@ -31,7 +31,6 @@
     "jshint-stylish": "~1.0.0",
     "chai": "~1.10.0",
     "chai-as-promised": "~4.1.1",
-    "sinon": "~1.12.1",
     "nock": "~0.51.0",
     "mocha": "~2.0.1"
   },

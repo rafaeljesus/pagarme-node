@@ -6,9 +6,8 @@ var argv    = require('yargs').argv;
 
 gulp.task('lint', function() {
   return gulp.src(['./lib/**/*.js', './spec/**/*[sS]pec.js', 'gulpfile.js'])
-    .pipe(plugins.jshint())
+    .pipe(plugins.jshint('.jshintrc'))
     .pipe(plugins.jshint.reporter('jshint-stylish'));
-    // .pipe(plugins.jshint.reporter('fail'));
 });
 
 gulp.task('cover', function() {

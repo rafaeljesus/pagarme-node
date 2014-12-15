@@ -1,10 +1,12 @@
 'use strict';
 
-var expect        = require('chai').use(require('chai-as-promised')).expect
-  , nock          = require('nock')
-  , _             = require('lodash')
-  , pagarme       = require('../')('ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo')
-  , Transaction   = pagarme.Transaction;
+var chai         = require('chai').use(require('chai-as-promised'))
+  , expect       = chai.expect
+  , should       = chai.should
+  , nock         = require('nock')
+  , _            = require('lodash')
+  , pagarme      = require('../')('ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo')
+  , Transaction  = pagarme.Transaction;
 
 describe('Transaction', function() {
 
@@ -63,6 +65,7 @@ describe('Transaction', function() {
       });
   });
 
+  // FIXME Socket error when running after spec above
   it('should refund transaction with customer ', function() {
     var transactionWithCustomer = _.extend(transactionFixture, customerFixture);
     Transaction
@@ -78,6 +81,7 @@ describe('Transaction', function() {
       });
   });
 
+  // FIXME Socket error when running after spec above
   it('should send metadata', function() {
     Transaction
       .create(_.extend(transactionFixture, metadataFixture))
@@ -117,8 +121,8 @@ describe('Transaction', function() {
         return Transaction.findById(obj.id);
       })
       .then(function(obj) {
-        expect(obj).to.be.ok;
-      });
+        expect(obj.id).to.be.ok;
+      })
   });
 
   it('should calculate installments', function() {
@@ -131,6 +135,7 @@ describe('Transaction', function() {
   });
 
   describe('should validate', function() {
+    // FIXME Internal Server Error 500
     it('card number', function() {
       transactionFixture.card_number = 123456;
       Transaction
@@ -165,13 +170,13 @@ describe('Transaction', function() {
           expect(err.type[0].parameter_name).to.be.equal('card_expiration_date');
         })
         .then(function() {
-          Transaction.create({ card_number: '4111111111111111', amount: '1000', card_holder_name: 'Jose da Silva', card_expiration_date: '12-1' });
+          return Transaction.create({ card_number: '4111111111111111', amount: '1000', card_holder_name: 'Jose da Silva', card_expiration_date: '12-1' });
         })
         .catch(function(err) {
           expect(err.type[0].parameter_name).to.be.equal('card_expiration_date');
         })
         .then(function() {
-          Transaction.create({ card_number: '4111111111111111', amount: '1000', card_holder_name: 'Jose da Silva', card_expiration_date: '1216' });
+          return Transaction.create({ card_number: '4111111111111111', amount: '1000', card_holder_name: 'Jose da Silva', card_expiration_date: '1216' });
         })
         .catch(function(err) {
           expect(err.type[0].parameter_name).to.be.equal('card_expiration_date');
