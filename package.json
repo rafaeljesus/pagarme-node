@@ -32,7 +32,9 @@
     "chai": "~1.10.0",
     "chai-as-promised": "~4.1.1",
     "nock": "~0.51.0",
-    "mocha": "~2.0.1"
+    "mocha": "~2.0.1",
+    "sinon": "~1.12.2",
+    "sinon-chai": "~2.6.0"
   },
   "dependencies": {
     "lodash": "~2.4.1",

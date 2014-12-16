@@ -1,7 +1,9 @@
 'use strict';
 
-var expect    = require('chai').expect
-  , resource  = require('../lib/resource');
+var chai      = require('chai').use(require('sinon-chai'))
+  , sinon     = require("sinon")
+  , resource  = require('../lib/resource')
+  , expect    = chai.expect;
 
 describe('Resource', function() {
 
@@ -15,6 +17,45 @@ describe('Resource', function() {
     expect(function() {
       return resource.create({ path: '/foo' })
     }).to.throw(/provide a resource name/);
+  });
+
+  it('should create with listener callback', function() {
+    var listener = sinon.spy();
+
+    var Resource = new (
+      resource.create('Foo', {
+      path: '/foo'
+    }).on('preFind', listener));
+
+    Resource.emit('preFind', listener);
+
+    expect(listener).to.have.been.called;
+  });
+
+  it('should inherite base methods from pagarme_resource', function() {
+    var Resource = new (
+      resource.create('Foo', {
+      path: '/foo'
+    }));
+
+    expect(Resource).itself.to.respondTo('create');
+    expect(Resource).itself.to.respondTo('update');
+    expect(Resource).itself.to.respondTo('findBy');
+    expect(Resource).itself.to.respondTo('findById');
+  });
+
+  it('should create with classMethods', function() {
+    var listener = function(){};
+
+    var Resource = new (resource.create('Foo', {
+      path: '/foo',
+      classMethods: {
+        execute: function() {
+        }
+      }
+    }).on('preFind', listener))
+
+    expect(Resource).itself.to.respondTo('execute');
   });
 
 });
