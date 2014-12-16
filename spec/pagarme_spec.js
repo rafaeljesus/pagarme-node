@@ -28,7 +28,7 @@ describe('Pagarme', function() {
   });
 
   it('should read card encryption public key permission', function() {
-    expect(pagarme.cardEncryptionPubKey).to.not.be.equal(undefined);
+    expect(pagarme.cardEncryptionPubKey).to.be.ok;
   });
 
   it('should validate Fingerprint', function() {
