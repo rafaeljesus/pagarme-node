@@ -1,7 +1,7 @@
 'use strict';
 
 var chai      = require('chai').use(require('sinon-chai'))
-  , sinon     = require("sinon")
+  , sinon     = require('sinon')
   , resource  = require('../lib/resource')
   , expect    = chai.expect;
 

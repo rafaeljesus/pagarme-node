@@ -1,6 +1,7 @@
 'use strict';
 
 var chai         = require('chai').use(require('chai-as-promised'))
+  , sinon        = require('sinon')
   , expect       = chai.expect
   , should       = chai.should
   , nock         = require('nock')
@@ -19,6 +20,12 @@ describe('Transaction', function() {
   });
 
   after(nock.cleanAll);
+
+  it('should compose classMethods', function() {
+    expect(Transaction).itself.to.respondTo('refund');
+    expect(Transaction).itself.to.respondTo('capture');
+    expect(Transaction).itself.to.respondTo('calculateInstallments');
+  });
 
   it('should charge transaction', function() {
     Transaction

@@ -39,7 +39,7 @@ describe('Plan', function() {
       })
       .then(function(plans) {
         Object.keys(plans).map(function(key) {
-          expect(plans[key]).to.be.property('trial_days', planFixture.trial_days);
+          expect(plans[key]).to.be.property('trial_days', 5);
         });
       });
   });
