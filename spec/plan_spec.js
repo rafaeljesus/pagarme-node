@@ -22,34 +22,44 @@ describe('Plan', function() {
       });
   });
 
+  it('should find by id', function() {
+    Plan.create(planFixture)
+      .then(function(obj) {
+        return Plan.findById(obj.id);
+      })
+      .then(function(obj) {
+        expect(obj.id).to.be.ok;
+      });
+  });
+
   it('should search plan by criteria', function() {
     Plan.create(planFixture)
       .then(function(obj) {
-        return Plan.findBy({ trial_days: planFixture.trial_days });
+        return Plan.findBy({ trial_days: planFixture.trial_days, page: 1, count: 10 });
       })
       .then(function(plans) {
         Object.keys(plans).map(function(key) {
-          expect(plans[key].trial_days).to.be.equal(parseInt(planFixture.trial_days));
+          expect(plans[key]).to.be.property('trial_days', planFixture.trial_days);
         });
       });
   });
 
-  describe('should validate', function() {
-    it('amount', function() {
+  describe('validate', function() {
+    it('should not accept amount as negative number', function() {
       Plan.create({ amount: -1 })
         .catch(function(err) {
           expect(err.type[0].parameter_name).to.be.equal('amount');
         });
     });
 
-    it('days as negative number', function() {
+    it('should not accept days as negative number', function() {
       Plan.create({ amount: 1000, days: -1 })
         .catch(function(err) {
           expect(err.type[0].parameter_name).to.be.equal('days');
         });
     });
 
-    it('days as string', function() {
+    it('should not accept days as string', function() {
       Plan
         .create({ amount: 1000, days: 30, name: 'Gold Plan' })
         .then(function(obj) {
@@ -60,7 +70,7 @@ describe('Plan', function() {
         });
     });
 
-    it('name', function() {
+    it('should require name', function() {
       Plan.create({ amount: 1000, days: 30 })
         .catch(function(err) {
           expect(err.type[0].parameter_name).to.be.equal('name');
