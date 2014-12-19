@@ -52,7 +52,7 @@ describe('Pagarme', function() {
 
     it('should send a get request to specified endpoint', function() {
       var body = { customer: { document_number:  36433809847 }, page: 1, count: 10 };
-      return pagarme
+      pagarme
         .request({ path: '/transactions', query: body })
         .then(function(transactions) {
           Object.keys(transactions).map(function(key) {
@@ -62,7 +62,7 @@ describe('Pagarme', function() {
     });
 
     it('should throw new PagarmeError', function() {
-      return expect(pagarme
+      expect(pagarme
         .request({ path: '/unknow_path' }))
         .to.be.rejected
         .then(function(err) {

@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">lib/card_hash.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">38.46% <small>(5 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">41.67% <small>(5 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">0% <small>(0 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">25% <small>(1 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">38.46% <small>(5 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">41.67% <small>(5 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -247,58 +247,57 @@
 29
 30
 31
-32
-33</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+32</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
 var resource  = require('./resource')
   , _         = require('lodash')
   , ursa      = require('ursa');
 &nbsp;
-<span class="fstat-no" title="function not covered" >function CardHash() {</span>
-}
+exports.toHash = <span class="fstat-no" title="function not covered" >function(data, options) {</span>
+<span class="cstat-no" title="statement not covered" >  var key = ursa.createPublicKey(new Buffer(data.public_key));</span>
+<span class="cstat-no" title="statement not covered" >  var cardJSON = JSON.stringify(cardDataParams(options));</span>
+<span class="cstat-no" title="statement not covered" >  var cardHash = data.id + '_' + key.encrypt(new Buffer(cardJSON, 'utf8'), 'utf8', 'base64', ursa.RSA_PKCS1_PADDING);</span>
+<span class="cstat-no" title="statement not covered" >  return cardHash;</span>
+};
 &nbsp;
-CardHash.prototype.generate = <span class="fstat-no" title="function not covered" >function(pagarme, options, callback) {</span>
-<span class="cstat-no" title="statement not covered" >  return this.pagarme</span>
+exports.create = function(pagarme, options, create) {
+  return pagarme
     .request({ path: '/transactions/card_hash_key' })
+    .bind(this)
     .then(<span class="fstat-no" title="function not covered" >function(data) {</span>
-<span class="cstat-no" title="statement not covered" >      var key = ursa.createPublicKey(new Buffer(data.public_key));</span>
-<span class="cstat-no" title="statement not covered" >      var cardJSON = JSON.stringify(cardDataParams(options));</span>
-<span class="cstat-no" title="statement not covered" >      var cardHash = data.id + '_' + key.encrypt(new Buffer(cardJSON, 'utf8'), 'utf8', 'base64', ursa.RSA_PKCS1_PADDING);</span>
-<span class="cstat-no" title="statement not covered" >      options.card_hash = cardHash;</span>
-<span class="cstat-no" title="statement not covered" >      console.log('&gt;&gt;&gt;&gt;&gt;');</span>
-<span class="cstat-no" title="statement not covered" >      callback(options);</span>
+<span class="cstat-no" title="statement not covered" >      options.card_hash = this.toHash(data, options);</span>
+<span class="cstat-no" title="statement not covered" >      create(options);</span>
     });
 };
 &nbsp;
@@ -310,14 +309,12 @@ CardHash.prototype.generate = <span class="fstat-no" title="function not covered
     card_cvv: options.card_cvv
   }
 }
-&nbsp;
-module.exports = CardHash;
 &nbsp;</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 17 2014 01:16:47 GMT-0200 (BRST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Dec 18 2014 22:31:28 GMT-0200 (BRST)</div>
 </div>
 
 <script src="../prettify.js"></script>

@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">lib/pagarme.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">100% <small>(33 / 33)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">90.91% <small>(30 / 33)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">90% <small>(9 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">30% <small>(3 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">100% <small>(7 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">85.71% <small>(6 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">100% <small>(32 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">93.75% <small>(30 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -293,42 +293,42 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-yes">16</span>
 <span class="cline-any cline-yes">15</span>
 <span class="cline-any cline-yes">14</span>
-<span class="cline-any cline-yes">13</span>
-<span class="cline-any cline-yes">13</span>
-<span class="cline-any cline-yes">13</span>
-<span class="cline-any cline-yes">13</span>
-<span class="cline-any cline-yes">13</span>
-<span class="cline-any cline-yes">13</span>
-<span class="cline-any cline-yes">13</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">35</span>
-<span class="cline-any cline-yes">35</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">35</span>
-<span class="cline-any cline-yes">35</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">35</span>
-<span class="cline-any cline-yes">35</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">35</span>
-<span class="cline-any cline-yes">35</span>
-<span class="cline-any cline-yes">35</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14</span>
-<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-yes">33</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -390,9 +390,9 @@ Pagarme.prototype.request = function(options) {
   return needle
     .requestAsync(options.method, this.url(options), requestParams, { json: true, timeout: 6000 })
     .bind(this)
-    .spread(function(res, body) {
-      if (res.statusCode !== 202 &amp;&amp; res.statusCode &lt; 400) return body;
-      throw _.extend(new this.PagarmeError('Pagarme Error'), {
+    .spread(<span class="fstat-no" title="function not covered" >function(res, body) {</span>
+<span class="cstat-no" title="statement not covered" >      if (res.statusCode !== 202 &amp;&amp; res.statusCode &lt; 400) <span class="cstat-no" title="statement not covered" >return body;</span></span>
+<span class="cstat-no" title="statement not covered" >      throw _.extend(new this.PagarmeError('Pagarme Error'), {</span>
         type: body.errors || 'unknown',
         body: body,
         statusCode: res.statusCode
@@ -413,7 +413,7 @@ module.exports = Pagarme;
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 17 2014 01:16:47 GMT-0200 (BRST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Dec 18 2014 22:31:28 GMT-0200 (BRST)</div>
 </div>
 
 <script src="../prettify.js"></script>

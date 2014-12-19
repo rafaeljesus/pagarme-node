@@ -195,20 +195,20 @@
     </style>
 </head>
 <body>
-<div class="header high">
+<div class="header medium">
     <h1>Code coverage report for <span class="entity">lib/pagarme_resource.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">90.91% <small>(20 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">59.09% <small>(13 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">50% <small>(3 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">33.33% <small>(2 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">88.89% <small>(8 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">22.22% <small>(2 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">90.91% <small>(20 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">59.09% <small>(13 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -277,13 +277,15 @@
 59
 60
 61
-62</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+62
+63</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -295,18 +297,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -319,14 +321,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">25</span>
-<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -341,10 +343,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
 var _            = require('lodash')
+  , assert       = require('assert')
   , Promise      = require('bluebird');
 &nbsp;
-function PagarmeResource(data) {
-  _.extend(this, data);
+<span class="fstat-no" title="function not covered" >function PagarmeResource(data) {</span>
+<span class="cstat-no" title="statement not covered" >  _.extend(this, data);</span>
 }
 &nbsp;
 PagarmeResource.findBy = Promise.method(function(options) {
@@ -355,39 +358,39 @@ PagarmeResource.findBy = Promise.method(function(options) {
     query: options
   }, options))
   .bind(this)
-  .then(function(data) {
-    return new this(data);
+  .then(<span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >    return new this(data);</span>
   });
 });
 &nbsp;
-PagarmeResource.findById = Promise.method(function(id) {
-  return this.pagarme.request(_.extend({
+PagarmeResource.findById = Promise.method(<span class="fstat-no" title="function not covered" >function(id) {</span>
+<span class="cstat-no" title="statement not covered" >  return this.pagarme.request(_.extend({</span>
     path: this._options.path + '/' + id,
     query: { id: id }
   }))
   .bind(this)
-  .then(function(data) {
-    return new this(data);
+  .then(<span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >    return new this(data);</span>
   });
 });
 &nbsp;
 PagarmeResource.create = Promise.method(function(options) {
   options = options || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
-  var request = this.pagarme.request(_.extend({
+  var create = this.pagarme.request(_.extend({
     path: this._options.path,
     method: 'POST',
     query: options
   }), options)
   .bind(this);
-  return request.then(function(data) {
-    return new this(data);
+  return create.then(<span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >    return new this(data);</span>
   });
-<span class="cstat-no" title="statement not covered" >  this.emit('preCreate', options, request);</span>
+<span class="cstat-no" title="statement not covered" >  this.emit('preCreate', this.pagarme, options, create);</span>
 });
 &nbsp;
-PagarmeResource.update = Promise.method(function(id, options) {
-  options = options || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
-  return this.pagarme.request(_.extend({
+PagarmeResource.update = Promise.method(<span class="fstat-no" title="function not covered" >function(id, options) {</span>
+<span class="cstat-no" title="statement not covered" >  options = options || {};</span>
+<span class="cstat-no" title="statement not covered" >  return this.pagarme.request(_.extend({</span>
     path: this._options.path + '/' + id,
     method: 'PUT',
     query: options
@@ -404,7 +407,7 @@ module.exports = PagarmeResource;
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 17 2014 01:16:47 GMT-0200 (BRST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Dec 18 2014 22:31:28 GMT-0200 (BRST)</div>
 </div>
 
 <script src="../prettify.js"></script>
