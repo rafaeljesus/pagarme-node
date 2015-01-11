@@ -1,3 +1,5 @@
+/* jshint -W030 */
+
 'use strict';
 
 var expect        = require('chai').use(require('chai-as-promised')).expect
@@ -9,10 +11,10 @@ var expect        = require('chai').use(require('chai-as-promised')).expect
 
 describe('Subscription', function() {
 
-  var planFixture, cardFixture;
+  var planFixture, cardFixture, options;
 
   before(function() {
-    var options = { postback_url: 'http://test.com/postback',  customer: { email: 'customer@pagar.me' } };
+    options = { postback_url: 'http://test.com/postback',  customer: { email: 'customer@pagar.me' } };
     cardFixture = require('./fixtures/card');
     planFixture = require('./fixtures/plan');
   });
@@ -22,8 +24,7 @@ describe('Subscription', function() {
   it('should create subscription with plan', function() {
     Plan.create(planFixture)
       .then(function(obj) {
-        var options = { postback_url: 'http://test.com/postback', customer: { email: 'customer@pagar.me' } }
-          , subscription = _.extend(cardFixture, options)
+        var subscription = _.extend(cardFixture, options)
           , with_plan = _.extend({ plan_id: obj.id }, subscription);
         return Subscription.create(with_plan);
       })

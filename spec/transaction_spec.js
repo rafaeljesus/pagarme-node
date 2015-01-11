@@ -1,9 +1,9 @@
-/*'use strict';
+/* jshint -W030 */
+
+'use strict';
 
 var chai         = require('chai').use(require('chai-as-promised'))
-  , sinon        = require('sinon')
   , expect       = chai.expect
-  , should       = chai.should
   , nock         = require('nock')
   , _            = require('lodash')
   , pagarme      = require('../')('ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo')
@@ -14,8 +14,8 @@ describe('Transaction', function() {
   var transactionFixture, customerFixture, metadataFixture;
 
   before(function() {
-    transactionFixture = require('./fixtures/transaction')
-    customerFixture = require('./fixtures/customer')
+    transactionFixture = require('./fixtures/transaction');
+    customerFixture = require('./fixtures/customer');
     metadataFixture = require('./fixtures/metadata');
   });
 
@@ -129,7 +129,7 @@ describe('Transaction', function() {
       })
       .then(function(obj) {
         expect(obj.id).to.be.ok;
-      })
+      });
   });
 
   it('should calculate installments', function() {
@@ -168,7 +168,7 @@ describe('Transaction', function() {
         .create(transactionFixture)
         .catch(function(err) {
           expect(err.type[0].parameter_name).to.be.equal('card_cvv');
-        })
+        });
     });
 
     it('card expiration date', function() {
@@ -188,8 +188,8 @@ describe('Transaction', function() {
         })
         .catch(function(err) {
           expect(err.type[0].parameter_name).to.be.equal('card_expiration_date');
-        })
+        });
       });
   });
 
-});*/
+});

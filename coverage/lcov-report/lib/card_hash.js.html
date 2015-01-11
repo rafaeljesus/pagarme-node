@@ -195,20 +195,20 @@
     </style>
 </head>
 <body>
-<div class="header low">
+<div class="header high">
     <h1>Code coverage report for <span class="entity">lib/card_hash.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">41.67% <small>(5 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(10 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">25% <small>(1 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(4 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">41.67% <small>(5 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(10 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -244,10 +244,15 @@
 26
 27
 28
-29
-30
-31</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+29</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -256,20 +261,11 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -278,40 +274,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
-var resource  = require('./resource')
-  , _         = require('lodash')
-  , ursa      = require('ursa');
+var ursa = require('ursa');
 &nbsp;
 exports.create = function(pagarme, options, create) {
   return pagarme
     .request({ path: '/transactions/card_hash_key' })
-    .then(<span class="fstat-no" title="function not covered" >function(data) {</span>
-<span class="cstat-no" title="statement not covered" >      options.card_hash = toHash(data, options);</span>
-<span class="cstat-no" title="statement not covered" >      return create(options);</span>
+    .then(function(data) {
+      options.card_hash = toHash(data, options);
+      return create(options);
     });
 };
 &nbsp;
-<span class="fstat-no" title="function not covered" >function toHash(data, options) {</span>
-<span class="cstat-no" title="statement not covered" >  var key = ursa.createPublicKey(new Buffer(data.public_key));</span>
-<span class="cstat-no" title="statement not covered" >  var cardJSON = JSON.stringify(cardDataParams(options));</span>
-<span class="cstat-no" title="statement not covered" >  var cardHash = data.id + '_' + key.encrypt(new Buffer(cardJSON, 'utf8'), 'utf8', 'base64', ursa.RSA_PKCS1_PADDING);</span>
-<span class="cstat-no" title="statement not covered" >  return cardHash;</span>
-};
+function toHash(data, options) {
+  var key = ursa.createPublicKey(new Buffer(data.public_key))
+    , cardJSON = JSON.stringify(cardDataParams(options))
+    , cardHash = data.id + '_' + key.encrypt(new Buffer(cardJSON, 'utf8'), 'utf8', 'base64', ursa.RSA_PKCS1_PADDING);
+  return cardHash;
+}
 &nbsp;
-<span class="fstat-no" title="function not covered" >function cardDataParams(options) {</span>
-<span class="cstat-no" title="statement not covered" >  return {</span>
+function cardDataParams(options) {
+  return {
     card_number: options.card_number,
     card_holder_name: options.card_holder_name,
     card_expiration_date: options.card_expiration_date,
     card_cvv: options.card_cvv
-  }
+  };
 }
 &nbsp;</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jan 11 2015 14:04:28 GMT-0200 (BRST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jan 11 2015 15:08:44 GMT-0200 (BRST)</div>
 </div>
 
 <script src="../prettify.js"></script>

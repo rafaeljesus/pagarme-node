@@ -1,3 +1,5 @@
+/* jshint -W030 */
+
 'use strict';
 
 var expect      = require('chai').use(require('chai-as-promised')).expect

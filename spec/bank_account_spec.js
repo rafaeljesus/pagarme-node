@@ -1,3 +1,5 @@
+/* jshint -W030 */
+
 'use strict';
 
 var expect      = require('chai').use(require('chai-as-promised')).expect
@@ -24,7 +26,7 @@ describe('BankAccount', function() {
   });
 
   it('should update a bank account', function() {
-    var legalName = 'Rafael Jesus'
+    var legalName = 'Rafael Jesus';
     BankAccount
       .create(bankAccountFixture)
       .then(function(obj) {

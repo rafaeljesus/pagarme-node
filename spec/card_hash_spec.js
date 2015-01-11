@@ -1,3 +1,5 @@
+/* jshint -W030 */
+
 'use strict';
 
 var expect    = require('chai').use(require('sinon-chai')).expect
@@ -12,8 +14,9 @@ describe('CardHash', function() {
 
   it('should create card hash', function() {
     var createCallback = sinon.spy();
-
-    CardHash.create(pagarme, {}, createCallback).then(function() {
+    CardHash
+      .create(pagarme, {}, createCallback)
+      .then(function() {
       expect(createCallback).to.have.been.called;
     });
   });
