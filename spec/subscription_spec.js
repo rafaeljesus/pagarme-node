@@ -9,13 +9,12 @@ var expect        = require('chai').use(require('chai-as-promised')).expect
 
 describe('Subscription', function() {
 
-  var subscriptionFixture, planFixture, cardFixture;
+  var planFixture, cardFixture;
 
   before(function() {
     var options = { postback_url: 'http://test.com/postback',  customer: { email: 'customer@pagar.me' } };
     cardFixture = require('./fixtures/card');
     planFixture = require('./fixtures/plan');
-    subscriptionFixture = _.extend(options, planFixture);
   });
 
   after(nock.cleanAll);
@@ -23,7 +22,8 @@ describe('Subscription', function() {
   it('should create subscription with plan', function() {
     Plan.create(planFixture)
       .then(function(obj) {
-        var with_plan = _.extend({ plan_id: obj.id }, subscriptionFixture);
+        var subscription = _.extend(cardFixture, options);
+        var with_plan = _.extend({ plan_id: obj.id }, subscription);
         return Subscription.create(with_plan);
       })
       .then(function(obj) {
@@ -34,11 +34,22 @@ describe('Subscription', function() {
   it('should create subscription with plan and unbsaved card', function() {
     Plan.create(planFixture)
       .then(function(obj) {
-        var withUnsavedCard = _.extend(subscriptionFixture, { card: cardFixture });
+        var withUnsavedCard = {
+          postback_url: 'http://test.com/postback',
+          payment_method: 'credit_card',
+          card: cardFixture,
+          plan_id: obj.id,
+          customer: {
+            email: 'customer@pagar.me'
+          }
+        };
         return Subscription.create(withUnsavedCard);
       })
       .then(function(obj) {
         expect(obj.id).to.be.ok;
+      })
+      .catch(function(err) {
+        // console.log(err);
       });
   });
 

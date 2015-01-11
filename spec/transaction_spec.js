@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 var chai         = require('chai').use(require('chai-as-promised'))
   , sinon        = require('sinon')
@@ -192,4 +192,4 @@ describe('Transaction', function() {
       });
   });
 
-});
+});*/

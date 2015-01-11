@@ -3,7 +3,6 @@
 var expect    = require('chai').use(require('chai-as-promised')).expect
   , nock      = require('nock')
   , crypto    = require('crypto')
-  , _         = require('lodash')
   , client    = require('../')
   , Pagarme   = client.Pagarme;
 
@@ -48,6 +47,7 @@ describe('Pagarme', function() {
   });
 
   describe('request', function() {
+
     after(nock.cleanAll);
 
     it('should send a get request to specified endpoint', function() {

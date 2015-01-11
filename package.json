@@ -4,7 +4,7 @@
   "description": "Pagar.me Nodejs Library",
   "main": "./lib",
   "scripts": {
-    "test": "mocha"
+    "test": "gulp lint test"
   },
   "repository": {
     "type": "git",
