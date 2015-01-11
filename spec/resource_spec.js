@@ -58,10 +58,10 @@ describe('Resource', function() {
       path: '/foo'
     }));
 
-    expect(Resource).itself.to.respondTo('create');
-    expect(Resource).itself.to.respondTo('update');
-    expect(Resource).itself.to.respondTo('findBy');
-    expect(Resource).itself.to.respondTo('findById');
+    var methods = ['create', 'update', 'findBy', 'findById'];
+    methods.forEach(function(method) {
+      expect(Resource).itself.to.respondTo(method);
+    });
   });
 
   it('should extend with classMethods', function() {

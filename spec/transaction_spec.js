@@ -72,7 +72,7 @@ describe('Transaction', function() {
       });
   });
 
-  // FIXME Socket error when running after spec above
+  // FIXME Socket error when running after spec below
   it('should refund transaction with customer ', function() {
     var transactionWithCustomer = _.extend(transactionFixture, customerFixture);
     Transaction
@@ -157,6 +157,7 @@ describe('Transaction', function() {
       Transaction
         .create(transactionFixture)
         .catch(function(err) {
+          console.log(err);
           expect(err.type[0].parameter_name).to.be.equal('card_holder_name');
         });
     });

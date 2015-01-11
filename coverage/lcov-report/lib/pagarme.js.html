@@ -199,7 +199,7 @@
     <h1>Code coverage report for <span class="entity">lib/pagarme.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">90.91% <small>(30 / 33)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">91.18% <small>(31 / 34)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Branches: <span class="metric">30% <small>(3 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -208,7 +208,7 @@
         Functions: <span class="metric">85.71% <small>(6 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">93.75% <small>(30 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">93.94% <small>(31 / 33)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -280,7 +280,11 @@
 62
 63
 64
-65</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+65
+66
+67
+68
+69</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -293,37 +297,41 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17</span>
 <span class="cline-any cline-yes">16</span>
-<span class="cline-any cline-yes">16</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15</span>
-<span class="cline-any cline-yes">14</span>
-<span class="cline-any cline-yes">14</span>
-<span class="cline-any cline-yes">14</span>
-<span class="cline-any cline-yes">14</span>
-<span class="cline-any cline-yes">14</span>
-<span class="cline-any cline-yes">14</span>
-<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-yes">15</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">32</span>
-<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">34</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">32</span>
-<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">34</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">32</span>
-<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">34</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">32</span>
-<span class="cline-any cline-yes">32</span>
-<span class="cline-any cline-yes">32</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">34</span>
+<span class="cline-any cline-yes">34</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -358,15 +366,19 @@ var assert      = require('assert')
 &nbsp;
 function Pagarme(config) {
   config = config || {};
+&nbsp;
   assert(this instanceof Pagarme, 'Pagarme must be called with new');
   assert(!!config.key, 'You need to configure a API key before performing requests.');
-  this.key = config.key;
-  this.cardEncryptionPubKey = fs.readFileSync('certs/public_key.pem', 'utf8');
-  this.endpoint = 'https://api.pagar.me/%s';
-  this.Card = require('./card')(this);
-  this.BankAccount = require('./bank_account')(this);
-  this.Plan = require('./plan')(this);
-  this.Transaction = require('./transaction')(this);
+&nbsp;
+  this.key                    = config.key;
+  this.cardEncryptionPubKey   = fs.readFileSync('certs/public_key.pem', 'utf8');
+  this.endpoint               = 'https://api.pagar.me/%s';
+&nbsp;
+  this.Card                   = require('./card')(this);
+  this.BankAccount            = require('./bank_account')(this);
+  this.Plan                   = require('./plan')(this);
+  this.Subscription           = require('./subscription')(this);
+  this.Transaction            = require('./transaction')(this);
 }
 &nbsp;
 function generateQuery() {
@@ -413,7 +425,7 @@ module.exports = Pagarme;
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 06 2015 00:03:17 GMT-0200 (BRST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jan 10 2015 22:31:04 GMT-0200 (BRST)</div>
 </div>
 
 <script src="../prettify.js"></script>
