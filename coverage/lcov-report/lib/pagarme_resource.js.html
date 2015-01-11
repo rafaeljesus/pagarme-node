@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">lib/pagarme_resource.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">59.09% <small>(13 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">77.78% <small>(14 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Branches: <span class="metric">33.33% <small>(2 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">22.22% <small>(2 / 9)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">40% <small>(2 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">59.09% <small>(13 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">77.78% <small>(14 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -267,18 +267,7 @@
 49
 50
 51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+52</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -297,18 +286,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -321,9 +304,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">27</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -333,9 +314,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -358,9 +336,6 @@ PagarmeResource.findBy = Promise.method(function(options) {
     query: options
   }, options))
   .bind(this)
-  .then(<span class="fstat-no" title="function not covered" >function(data) {</span>
-<span class="cstat-no" title="statement not covered" >    return new this(data);</span>
-  });
 });
 &nbsp;
 PagarmeResource.findById = Promise.method(<span class="fstat-no" title="function not covered" >function(id) {</span>
@@ -369,9 +344,6 @@ PagarmeResource.findById = Promise.method(<span class="fstat-no" title="function
     query: { id: id }
   }))
   .bind(this)
-  .then(<span class="fstat-no" title="function not covered" >function(data) {</span>
-<span class="cstat-no" title="statement not covered" >    return new this(data);</span>
-  });
 });
 &nbsp;
 PagarmeResource.create = Promise.method(function(options) {
@@ -382,10 +354,8 @@ PagarmeResource.create = Promise.method(function(options) {
     query: options
   }), options)
   .bind(this);
-  return create.then(<span class="fstat-no" title="function not covered" >function(data) {</span>
-<span class="cstat-no" title="statement not covered" >    return new this(data);</span>
-  });
-<span class="cstat-no" title="statement not covered" >  this.emit('preCreate', this.pagarme, options, create);</span>
+  this.emit('preCreate', this.pagarme, options, create);
+  return create;
 });
 &nbsp;
 PagarmeResource.update = Promise.method(<span class="fstat-no" title="function not covered" >function(id, options) {</span>
@@ -396,9 +366,6 @@ PagarmeResource.update = Promise.method(<span class="fstat-no" title="function n
     query: options
   }), options)
   .bind(this)
-  .then(<span class="fstat-no" title="function not covered" >function(data) {</span>
-<span class="cstat-no" title="statement not covered" >    return new this(data);</span>
-  });
 });
 &nbsp;
 module.exports = PagarmeResource;
@@ -407,7 +374,7 @@ module.exports = PagarmeResource;
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jan 10 2015 22:31:04 GMT-0200 (BRST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jan 11 2015 01:00:48 GMT-0200 (BRST)</div>
 </div>
 
 <script src="../prettify.js"></script>
