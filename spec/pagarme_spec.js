@@ -10,7 +10,7 @@ describe('Pagarme', function() {
 
   var pagarme, key = 'ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo';
 
-  beforeEach(function() {
+  before(function() {
     pagarme = client(key);
   });
 

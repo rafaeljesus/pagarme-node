@@ -22,8 +22,9 @@ describe('Subscription', function() {
   it('should create subscription with plan', function() {
     Plan.create(planFixture)
       .then(function(obj) {
-        var subscription = _.extend(cardFixture, options);
-        var with_plan = _.extend({ plan_id: obj.id }, subscription);
+        var options = { postback_url: 'http://test.com/postback', customer: { email: 'customer@pagar.me' } }
+          , subscription = _.extend(cardFixture, options)
+          , with_plan = _.extend({ plan_id: obj.id }, subscription);
         return Subscription.create(with_plan);
       })
       .then(function(obj) {
