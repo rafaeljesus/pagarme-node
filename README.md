@@ -1,6 +1,6 @@
 ## pagarme-node
 
-[![Circle CI](https://circleci.com/gh/rafaeljesus/pagarme-node.svg?style=svg)](https://circleci.com/gh/rafaeljesus/pagarme-node) [![Code Climate](https://codeclimate.com/github/rafaeljesus/pagarme-node/badges/gpa.svg)](https://codeclimate.com/github/rafaeljesus/pagarme-node) [![Test Coverage](https://codeclimate.com/github/rafaeljesus/pagarme-node/badges/coverage.svg)](https://codeclimate.com/github/rafaeljesus/pagarme-node)
+[![Circle CI](https://circleci.com/gh/rafaeljesus/pagarme-node.png?style=badge)](https://circleci.com/gh/rafaeljesus/pagarme-node) [![Code Climate](https://codeclimate.com/github/rafaeljesus/pagarme-node/badges/gpa.svg)](https://codeclimate.com/github/rafaeljesus/pagarme-node) [![Test Coverage](https://codeclimate.com/github/rafaeljesus/pagarme-node/badges/coverage.svg)](https://codeclimate.com/github/rafaeljesus/pagarme-node)
 
 
 Pagar.me Node.js library
