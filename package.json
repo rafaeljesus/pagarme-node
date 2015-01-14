@@ -13,7 +13,8 @@
   "keywords": [
     "node",
     "javascript",
-    "pagarme"
+    "pagarme",
+    "client"
   ],
   "author": "Rafael Jesus <rafaelljesus86@gmail.com> (http://rafaeljesus.herokuapp.com)",
   "license": "MIT",
@@ -40,7 +41,6 @@
     "lodash": "~2.4.1",
     "bluebird": "~2.3.11",
     "crypto": "0.0.3",
-    "nock": "~0.51.0",
     "needle": "~0.7.10",
     "ursa": "~0.8.1",
     "create-error": "~0.3.1"
