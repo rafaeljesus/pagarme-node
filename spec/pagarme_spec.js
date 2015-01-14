@@ -3,7 +3,6 @@
 'use strict';
 
 var expect    = require('chai').use(require('chai-as-promised')).expect
-  , nock      = require('nock')
   , crypto    = require('crypto')
   , client    = require('../')
   , Pagarme   = client.Pagarme;
@@ -12,7 +11,7 @@ describe('Pagarme', function() {
 
   var pagarme, key = 'ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo';
 
-  before(function() {
+  beforeEach(function() {
     pagarme = client(key);
   });
 
@@ -49,10 +48,7 @@ describe('Pagarme', function() {
   });
 
   describe('request', function() {
-
-    after(nock.cleanAll);
-
-    it('should send a get request to specified endpoint', function() {
+    it('should send a get request to specified endpoint', function(done) {
       var body = { customer: { document_number:  36433809847 }, page: 1, count: 10 };
       pagarme
         .request({ path: '/transactions', query: body })
@@ -60,10 +56,11 @@ describe('Pagarme', function() {
           Object.keys(transactions).map(function(key) {
             expect(transactions[key].customer).to.have.property('document_number', '36433809847');
           });
+          done();
         });
     });
 
-    it('should throw new PagarmeError', function() {
+    it('should throw new PagarmeError', function(done) {
       expect(pagarme
         .request({ path: '/unknow_path' }))
         .to.be.rejected
@@ -72,6 +69,7 @@ describe('Pagarme', function() {
           expect(err.message).to.be.equal('Pagarme Error');
           expect(err.statusCode).to.equal(404);
           expect(err.type).to.deep.equal([{ type: 'not_found', parameter_name: null, message: 'URL inválida.' }]);
+          done();
         });
     });
 

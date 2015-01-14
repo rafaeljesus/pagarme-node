@@ -3,21 +3,18 @@
 'use strict';
 
 var expect    = require('chai').use(require('sinon-chai')).expect
-  , nock      = require('nock')
   , sinon     = require('sinon')
   , CardHash  = require('../lib/card_hash')
   , pagarme   = require('../')('ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo');
 
 describe('CardHash', function() {
 
-  after(nock.cleanAll);
-
-  it('should create card hash', function() {
+  it('should create card hash', function(done) {
     var createCallback = sinon.spy();
-    CardHash
-      .create(pagarme, {}, createCallback)
+    CardHash.create(pagarme, {}, createCallback)
       .then(function() {
-      expect(createCallback).to.have.been.called;
+        expect(createCallback).to.have.been.called;
+        done();
     });
   });
 

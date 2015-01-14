@@ -3,7 +3,6 @@
 'use strict';
 
 var expect      = require('chai').use(require('chai-as-promised')).expect
-  , nock        = require('nock')
   , pagarme     = require('../')('ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo')
   , BankAccount = pagarme.BankAccount;
 
@@ -11,21 +10,20 @@ describe('BankAccount', function() {
 
   var bankAccountFixture;
 
-  before(function() {
+  beforeEach(function() {
     bankAccountFixture = require('./fixtures/bank_account');
   });
 
-  after(nock.cleanAll);
-
-  it('should create a bank account', function() {
+  it('should create a bank account', function(done) {
     BankAccount
       .create(bankAccountFixture)
       .then(function(obj) {
         expect(obj.id).to.be.ok;
+        done();
       });
   });
 
-  it('should update a bank account', function() {
+  it('should update a bank account', function(done) {
     var legalName = 'Rafael Jesus';
     BankAccount
       .create(bankAccountFixture)
@@ -34,10 +32,11 @@ describe('BankAccount', function() {
       })
       .then(function(obj) {
         expect(obj.legal_name).to.be.equal(legalName);
+        done();
       });
   });
 
-  it('should find by id', function() {
+  it('should find by id', function(done) {
     BankAccount
       .create(bankAccountFixture)
       .then(function(obj) {
@@ -45,10 +44,11 @@ describe('BankAccount', function() {
       })
       .then(function(obj) {
         expect(obj.id).to.be.ok;
+        done();
       });
   });
 
-  it('should search by criteria', function() {
+  it('should search by criteria', function(done) {
     var query = { bank_account: { agencia: 1935 }, page: 1, count: 10 };
     BankAccount
       .findBy(query)
@@ -56,6 +56,7 @@ describe('BankAccount', function() {
         Object.keys(accounts).map(function(key) {
           expect(accounts[key]).to.have.property('agencia', '1935');
         });
+        done();
       });
   });
 });

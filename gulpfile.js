@@ -18,7 +18,8 @@ gulp.task('cover', function() {
 gulp.task('test', ['cover'], function () {
   return gulp.src('./spec/**/*[sS]pec.js')
     .pipe(plugins.mocha({
-      grep: argv.grep
+      grep: argv.grep,
+      timeout: 20000
     }))
     .pipe(plugins.istanbul.writeReports());
 });

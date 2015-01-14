@@ -42,13 +42,10 @@ describe('Resource', function() {
 
     it('should create with listener callback', function() {
       var assertPageCount = sinon.spy();
-
       var Resource = new resource.create('Foo', {
         path: '/foo'
       }).on('preFind', assertPageCount)();
-
       Resource.emit('preFind', assertPageCount);
-
       expect(assertPageCount).to.have.been.called;
     });
   });
@@ -57,7 +54,6 @@ describe('Resource', function() {
     var Resource = new resource.create('Foo', {
       path: '/foo'
     })();
-
     var methods = ['create', 'update', 'findBy', 'findById'];
     methods.forEach(function(method) {
       expect(Resource).itself.to.respondTo(method);
@@ -66,7 +62,6 @@ describe('Resource', function() {
 
   it('should extend with classMethods', function() {
     var assertPageCount = function(){};
-
     var Resource = new resource.create('Foo', {
       path: '/foo',
       classMethods: {
@@ -74,7 +69,6 @@ describe('Resource', function() {
         }
       }
     }).on('preFind', assertPageCount)();
-
     expect(Resource).itself.to.respondTo('execute');
   });
 
