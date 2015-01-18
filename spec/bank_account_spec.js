@@ -23,19 +23,6 @@ describe('BankAccount', function() {
       });
   });
 
-  it('should update a bank account', function(done) {
-    var legalName = 'Rafael Jesus';
-    BankAccount
-      .create(bankAccountFixture)
-      .then(function(obj) {
-        return BankAccount.update(obj.id, { legal_name: legalName });
-      })
-      .then(function(obj) {
-        expect(obj.legal_name).to.be.equal(legalName);
-        done();
-      });
-  });
-
   it('should find by id', function(done) {
     BankAccount
       .create(bankAccountFixture)

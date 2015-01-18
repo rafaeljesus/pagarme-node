@@ -22,18 +22,6 @@ describe('Card', function() {
       });
   });
 
-  it('should update a card', function(done) {
-    var card_holder_name = '4901720080344449';
-    Card.create(cardFixture)
-      .then(function(obj) {
-        return Card.update(obj.id, { card_holder_name: card_holder_name });
-      })
-      .then(function(obj) {
-        expect(obj.card_holder_name).to.be.equal(card_holder_name);
-        done();
-      });
-  });
-
   it('should find by id', function(done) {
     Card.create(cardFixture)
       .then(function(obj) {
@@ -41,17 +29,6 @@ describe('Card', function() {
       })
       .then(function(obj) {
         expect(obj.id).to.be.ok;
-        done();
-      });
-  });
-
-  it('should search by criteria', function(done) {
-    var query = { card: { brand: 'visa' }, page: 1, count: 10 };
-    Card.findBy(query)
-      .then(function(cards) {
-        Object.keys(cards).map(function(key) {
-          expect(cards[key]).to.have.property('brand', 'visa');
-        });
         done();
       });
   });

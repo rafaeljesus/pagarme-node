@@ -19,7 +19,7 @@ gulp.task('test', ['cover'], function () {
   return gulp.src('./spec/**/*[sS]pec.js')
     .pipe(plugins.mocha({
       grep: argv.grep,
-      timeout: 20000
+      timeout: 25000
     }))
     .pipe(plugins.istanbul.writeReports());
 });

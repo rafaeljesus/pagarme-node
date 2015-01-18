@@ -29,6 +29,7 @@ describe('Transaction', function() {
     Transaction
       .create(transactionFixture)
       .then(function(obj) {
+        console.log('on spec');
         expect(obj.id).to.be.ok;
         expect(obj.card_holder_name).to.be.equal('Jose da Silva');
         expect(obj.date_created).to.be.ok;
