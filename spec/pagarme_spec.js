@@ -50,28 +50,22 @@ describe('Pagarme', function() {
   describe('request', function() {
     it('should send a get request to specified endpoint', function(done) {
       var body = { customer: { document_number:  36433809847 }, page: 1, count: 10 };
-      pagarme
-        .request({ path: '/transactions', query: body })
-        .then(function(transactions) {
-          Object.keys(transactions).map(function(key) {
-            expect(transactions[key].customer).to.have.property('document_number', '36433809847');
-          });
-          done();
+      var options = { path: '/transactions', query: body };
+      pagarme.request(options, function(err, transactions) {
+        if (err) return done(err);
+        Object.keys(transactions).map(function(key) {
+          expect(transactions[key].customer).to.have.property('document_number', '36433809847');
+        });
+        done();
         });
     });
 
-    it('should throw new PagarmeError', function(done) {
-      expect(pagarme
-        .request({ path: '/unknow_path' }))
-        .to.be.rejected
-        .then(function(err) {
-          expect(err).to.be.an.instanceOf(pagarme.PagarmeError);
-          expect(err.message).to.be.equal('Pagarme Error');
-          expect(err.statusCode).to.equal(404);
-          expect(err.type).to.deep.equal([{ type: 'not_found', parameter_name: null, message: 'URL inválida.' }]);
-          done();
-        });
+    it('should return PagarmeError', function(done) {
+      pagarme.request({ path: '/unknow_path' }, function(err) {
+        expect(err.type).to.deep.equal([{ type: 'not_found', parameter_name: null, message: 'URL inválida.' }]);
+        expect(err.statusCode).to.equal(404);
+        done();
+      });
     });
-
   });
 });
