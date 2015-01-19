@@ -2,7 +2,8 @@
 
 'use strict';
 
-var expect      = require('chai').use(require('chai-as-promised')).expect
+var async       = require('async')
+  , expect      = require('chai').use(require('chai-as-promised')).expect
   , pagarme     = require('../')('ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo')
   , BankAccount = pagarme.BankAccount;
 
@@ -22,13 +23,17 @@ describe('BankAccount', function() {
   });
 
   it('should find by id', function(done) {
-    BankAccount.create(bankAccountFixture, function(err, res) {
+    async.seq(function(next) {
+      BankAccount.create(bankAccountFixture, function(err, res) {
+        expect(err).to.be.null;
+        next(null, res);
+      });
+    }, function(res) {
       BankAccount.findById(res.id, function(err, res) {
-        if (err) return done(err);
         expect(res.id).to.be.ok;
         done();
       });
-    });
+    })();
   });
 
   it('should search by criteria', function(done) {

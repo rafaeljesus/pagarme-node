@@ -2,7 +2,8 @@
 
 'use strict';
 
-var expect      = require('chai').use(require('chai-as-promised')).expect
+var async       = require('async')
+  , expect      = require('chai').use(require('chai-as-promised')).expect
   , pagarme     = require('../')('ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo')
   , Card        = pagarme.Card;
 
@@ -15,21 +16,23 @@ describe('Card', function() {
   });
 
   it('should create a card', function(done) {
-    Card.create(cardFixture)
-      .then(function(obj) {
-        expect(obj.id).to.be.ok;
-        done();
-      });
+    Card.create(cardFixture, function(err, res) {
+      expect(res.id).to.be.ok;
+      done();
+    });
   });
 
   it('should find by id', function(done) {
-    Card.create(cardFixture)
-      .then(function(obj) {
-        return Card.findById(obj.id);
-      })
-      .then(function(obj) {
-        expect(obj.id).to.be.ok;
+    async.seq(function(next) {
+      Card.create(cardFixture, function(err, res) {
+        expect(err).to.be.null;
+        next(null, res);
+      });
+    }, function(res) {
+      Card.findById(res.id, function(err, res) {
+        expect(res.id).to.be.ok;
         done();
       });
+    })();
   });
 });

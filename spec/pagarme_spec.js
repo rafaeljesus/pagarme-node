@@ -52,7 +52,7 @@ describe('Pagarme', function() {
       var body = { customer: { document_number:  36433809847 }, page: 1, count: 10 };
       var options = { path: '/transactions', query: body };
       pagarme.request(options, function(err, transactions) {
-        if (err) return done(err);
+        if (err) { return done(err); }
         Object.keys(transactions).map(function(key) {
           expect(transactions[key].customer).to.have.property('document_number', '36433809847');
         });
