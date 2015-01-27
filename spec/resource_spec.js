@@ -40,14 +40,14 @@ describe('Resource', function() {
       }).to.throw(/provide a resource name/);
     });
 
-    it('should create with listener callback', function() {
+    /*it('should create with listener callback', function() {
       var assertPageCount = sinon.spy();
       var Resource = new resource.create('Foo', {
         path: '/foo'
       }).on('preFind', assertPageCount)();
       Resource.emit('preFind', assertPageCount);
       expect(assertPageCount).to.have.been.called;
-    });
+    });*/
   });
 
   it('should extend base methods from pagarme_resource', function() {
@@ -58,18 +58,6 @@ describe('Resource', function() {
     methods.forEach(function(method) {
       expect(Resource).itself.to.respondTo(method);
     });
-  });
-
-  it('should extend with classMethods', function() {
-    var assertPageCount = function(){};
-    var Resource = new resource.create('Foo', {
-      path: '/foo',
-      classMethods: {
-        execute: function() {
-        }
-      }
-    }).on('preFind', assertPageCount)();
-    expect(Resource).itself.to.respondTo('execute');
   });
 
 });

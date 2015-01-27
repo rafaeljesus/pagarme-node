@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">lib/pagarme_resource.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">94.44% <small>(17 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">95.65% <small>(22 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">50% <small>(3 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">60% <small>(6 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Functions: <span class="metric">80% <small>(4 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">94.44% <small>(17 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">95.65% <small>(22 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -266,7 +266,11 @@
 48
 49
 50
-51</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+51
+52
+53
+54
+55</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -276,94 +280,102 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">15</span>
-<span class="cline-any cline-yes">15</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">15</span>
-<span class="cline-any cline-yes">15</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
 &nbsp;
-var _            = require('lodash')
-  , Promise      = require('bluebird');
+var extend = require('lodash').extend
+  , async = require('async');
 &nbsp;
 <span class="fstat-no" title="function not covered" >function PagarmeResource(data) {</span>
-<span class="cstat-no" title="statement not covered" >  _.extend(this, data);</span>
+<span class="cstat-no" title="statement not covered" >  extend(this, data);</span>
 }
 &nbsp;
-PagarmeResource.findBy = Promise.method(function(options) {
+PagarmeResource.findBy = function(options, cb) {
   options = options || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
-  this.emit('preFind', options);
-  return this.pagarme.request(_.extend({
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (this.beforeFind) {
+    this.beforeFind.apply(this, [options]);
+  }
+  var params = extend({
     path: this._options.template(options),
     query: options
-  }, options))
-  .bind(this);
-});
+  }, options);
+  this.pagarme.request(params, cb);
+};
 &nbsp;
-PagarmeResource.findById = Promise.method(function(id) {
-  return this.pagarme.request(_.extend({
+PagarmeResource.findById = function(id, cb) {
+  var params = extend({
     path: this._options.path + '/' + id,
     query: { id: id }
-  }))
-  .bind(this);
-});
+  });
+  this.pagarme.request(params, cb);
+};
 &nbsp;
-PagarmeResource.create = Promise.method(function(options) {
+PagarmeResource.create = function(options, cb) {
   options = options || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
-  var create = this.pagarme.request(_.extend({
+  var params = extend({
     path: this._options.path,
     method: 'POST',
     query: options
-  }), options)
-  .bind(this);
-  this.emit('preCreate', this.pagarme, options, create);
-  return create;
-});
+  }, options);
+  if (this.beforeCreate) {
+    this.beforeCreate.apply(this, [this.pagarme, params, cb]);
+  } else {
+    this.pagarme.request(params, cb);
+  }
+};
 &nbsp;
-PagarmeResource.update = Promise.method(function(id, options) {
+PagarmeResource.update = function(id, options, cb) {
   options = options || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
-  return this.pagarme.request(_.extend({
+  var params = extend({
     path: this._options.path + '/' + id,
     method: 'PUT',
     query: options
-  }), options)
-  .bind(this);
-});
+  }, options);
+  this.pagarme.request(params, cb);
+};
 &nbsp;
 module.exports = PagarmeResource;
 &nbsp;</pre></td></tr>
@@ -371,7 +383,7 @@ module.exports = PagarmeResource;
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Jan 11 2015 15:08:44 GMT-0200 (BRST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Jan 26 2015 23:02:19 GMT-0200 (BRST)</div>
 </div>
 
 <script src="../prettify.js"></script>
