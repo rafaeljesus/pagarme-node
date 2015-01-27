@@ -16,5 +16,6 @@ var Pagarme = require('pagarme').Pagarme;
 var pagarme = new Pagarme({ key: 'api_key' });
 ```
 
+
 ## License
 Pagar.me Node.js library is released under the [MIT License](http://www.opensource.org/licenses/MIT).
