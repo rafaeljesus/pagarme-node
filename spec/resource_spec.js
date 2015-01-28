@@ -3,7 +3,6 @@
 'use strict';
 
 var chai      = require('chai').use(require('sinon-chai'))
-  , sinon     = require('sinon')
   , resource  = require('../lib/resource')
   , expect    = chai.expect;
 
@@ -28,26 +27,25 @@ describe('Resource', function() {
       }, this);
     });
 
-    it('should create with name and url path', function() {
-      var Resource = new resource.create('Foo', { path: '/foo' })();
-      expect(Resource).to.have.property('_name', 'Foo');
-      expect(Resource._options.path).to.be.equal('/foo');
-    });
-
-    it('should create with name and url path', function() {
+    it('should not create without name', function() {
       expect(function() {
         return resource.create({ path: '/foo' });
       }).to.throw(/provide a resource name/);
     });
 
-    /*it('should create with listener callback', function() {
-      var assertPageCount = sinon.spy();
+    it('should create with attributes and callback listeners', function() {
+      var beforeFind = function(){};
+      var beforeCreate = function(){};
       var Resource = new resource.create('Foo', {
-        path: '/foo'
-      }).on('preFind', assertPageCount)();
-      Resource.emit('preFind', assertPageCount);
-      expect(assertPageCount).to.have.been.called;
-    });*/
+        path: '/foo',
+        beforeCreate: beforeCreate,
+        beforeFind: beforeFind,
+      })();
+      expect(Resource).to.have.property('_name', 'Foo');
+      expect(Resource.beforeCreate).to.be.a('function');
+      expect(Resource.beforeFind).to.be.a('function');
+      expect(Resource._options.path).to.be.equal('/foo');
+    });
   });
 
   it('should extend base methods from pagarme_resource', function() {

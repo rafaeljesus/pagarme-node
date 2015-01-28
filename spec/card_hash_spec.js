@@ -19,13 +19,4 @@ describe('CardHash', function() {
       done();
     });
   });
-
-  /*it('should generate card hash', function() {
-    pagarme
-      .request({ path: '/transactions/card_hash_key' })
-      .then(function(data) {
-        var card_hash = CardHash.toHash(data, {});
-        expect(card_hash).to.be.ok;
-      });
-  });*/
 });
