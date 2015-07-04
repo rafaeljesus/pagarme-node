@@ -13,7 +13,7 @@ $ npm install pagarme
 var pagarme = require('pagarme')('api_key');
 // or
 var Pagarme = require('pagarme').Pagarme;
-var pagarme = new Pagarme({ key: 'api_key' });
+var pagarme = new Pagarme({key: 'api_key'});
 ```
 
 

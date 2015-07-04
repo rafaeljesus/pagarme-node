@@ -3,7 +3,7 @@
 'use strict';
 
 var async       = require('async')
-  , expect      = require('chai').use(require('chai-as-promised')).expect
+  , expect      = require('chai').expect
   , pagarme     = require('../')('ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo')
   , BankAccount = pagarme.BankAccount;
 

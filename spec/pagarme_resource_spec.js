@@ -1,7 +1,6 @@
 'use strict';
 
-var chai              = require('chai').use(require('chai-as-promised'))
-  , expect            = chai.expect
+var expect            = require('chai').expect
   , pagarme_resource  = require('../lib/pagarme_resource');
 
 describe('PagarmeResource', function() {

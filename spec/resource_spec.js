@@ -13,7 +13,7 @@ describe('Resource', function() {
       var names = [{}, undefined, false];
       names.forEach(function(name) {
         expect(function() {
-          return new resource.create(name, { path: '/foo' })();
+          return new resource.create(name, {path: '/foo'})();
         }).to.throw(/You need to provide a resource name/);
       }, this);
     });
@@ -22,14 +22,14 @@ describe('Resource', function() {
       var paths = [undefined, false];
       paths.forEach(function(path) {
         expect(function() {
-          return new resource.create('Foo', { path: path })();
+          return new resource.create('Foo', {path: path})();
         }).to.throw(/You need to provide a resource path/);
       }, this);
     });
 
     it('should not create without name', function() {
       expect(function() {
-        return resource.create({ path: '/foo' });
+        return resource.create({ path:'/foo'});
       }).to.throw(/provide a resource name/);
     });
 

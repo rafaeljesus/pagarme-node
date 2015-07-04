@@ -1,11 +1,16 @@
 {
   "node": true,
+  "predef": ["-Promise"],
   "esnext": true,
   "bitwise": true,
+  "undef": true,
+  "newcap": false,
   "camelcase": false,
-  "curly": true,
+  "quotmark": "single",
+  "expr": true,
+  "eqeqeq": true, // Prohibit use of == and != in favor of === and !==.
+  "validthis": true,
   "immed": true,
-  "newcap": true,
   "noarg": true,
   "undef": true,
   "unused": "vars",
@@ -13,8 +18,11 @@
   "laxcomma": "true",
   "globals": {
     "it": false,
+    "xit": false,
     "describe": false,
+    "xdescribe": false,
     "before": false,
+    "after": false,
     "beforeEach": false,
     "afterEach": false
   }

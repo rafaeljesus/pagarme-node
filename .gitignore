@@ -1,3 +1,9 @@
-*.swp
-
-node_modules
+node_modules/
+npm-debug.log
+newrelic_agent.log
+coverage/
+.idea
+.vagrant/
+tags
+**/*.swp
+newrelic_agent.log

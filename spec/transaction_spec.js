@@ -3,8 +3,7 @@
 'use strict';
 
 var async        = require('async')
-  , chai         = require('chai').use(require('chai-as-promised'))
-  , expect       = chai.expect
+  , expect       = require('chai').expect
   , extend       = require('lodash').extend
   , pagarme      = require('../')('ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo')
   , Transaction  = pagarme.Transaction;
@@ -67,7 +66,7 @@ describe('Transaction', function() {
       });
     }, function(res) {
       Transaction.refund(res.id, function(err, res) {
-        if (err) { return done(err); }
+        if (err) return done(err);
         expect(res.status).to.be.equal('refunded');
         done();
       });
@@ -120,7 +119,13 @@ describe('Transaction', function() {
   });*/
 
   it('should search transaction by criteria', function(done) {
-    var query = { customer: { document_number:  36433809847 }, page: 1, count: 10 };
+    var query = {
+      customer: {
+        document_number: 36433809847
+      },
+      page: 1,
+      count: 10
+    };
     Transaction.findBy(query, function(err, res) {
       Object.keys(res).map(function(key) {
         expect(res[key].customer).to.have.property('document_number', '36433809847');
@@ -145,7 +150,7 @@ describe('Transaction', function() {
   });
 
   it('should calculate installments', function(done) {
-    var options = { amount: transactionFixture.amount, interest_rate: 0 };
+    var options = {amount: transactionFixture.amount, interest_rate: 0};
     Transaction.calculateInstallments(options, function(err, res) {
       expect([res.installments].length).to.be.equal(1);
       expect(res.installments[2].installment_amount).to.be.equal(500);
@@ -183,19 +188,34 @@ describe('Transaction', function() {
 
     it('card expiration date', function(done) {
       async.series([function(next) {
-        var options = { card_number: '4111111111111111', amount: '1000', card_holder_name: 'Jose da Silva', card_expiration_date: '10' };
+        var options = {
+          card_number: '4111111111111111',
+          amount: '1000',
+          card_holder_name: 'Jose da Silva',
+          card_expiration_date: '10'
+        };
         Transaction.create(options, function(err, res) {
           expect(err.type[0].parameter_name).to.be.equal('card_expiration_date');
           next();
         });
       }, function(next) {
-        var options = { card_number: '4111111111111111', amount: '1000', card_holder_name: 'Jose da Silva', card_expiration_date: '12-1' };
+        var options = {
+          card_number: '4111111111111111',
+          amount: '1000',
+          card_holder_name: 'Jose da Silva',
+          card_expiration_date: '12-1'
+        };
         Transaction.create(options, function(err, res) {
           expect(err.type[0].parameter_name).to.be.equal('card_expiration_date');
           next();
         });
       }, function(next) {
-        var options = { card_number: '4111111111111111', amount: '1000', card_holder_name: 'Jose da Silva', card_expiration_date: '1216' };
+        var options = {
+          card_number: '4111111111111111',
+          amount: '1000',
+          card_holder_name: 'Jose da Silva',
+          card_expiration_date: '1216'
+        };
         Transaction.create(options, function(err, res) {
           expect(err.type[0].parameter_name).to.be.equal('card_cvv');
           next();

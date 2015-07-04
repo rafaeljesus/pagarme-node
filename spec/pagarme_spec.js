@@ -2,7 +2,7 @@
 
 'use strict';
 
-var expect    = require('chai').use(require('chai-as-promised')).expect
+var expect    = require('chai').expect
   , crypto    = require('crypto')
   , client    = require('../')
   , Pagarme   = client.Pagarme;
@@ -27,7 +27,7 @@ describe('Pagarme', function() {
     });
 
     it('should configure the API key', function() {
-      expect(new Pagarme({ key: key })).to.have.property('key', key);
+      expect(new Pagarme({key: key})).to.have.property('key', key);
     });
 
     it('should read card encryption public key permission', function() {
@@ -49,20 +49,28 @@ describe('Pagarme', function() {
 
   describe('request', function() {
     it('should send a get request to specified endpoint', function(done) {
-      var body = { customer: { document_number:  36433809847 }, page: 1, count: 10 };
-      var options = { path: '/transactions', query: body };
+      var body = {
+        customer: {
+          document_number: 36433809847
+        },
+        page: 1,
+        count: 10
+      };
+      var options = {path: '/transactions', query: body};
       pagarme.request(options, function(err, transactions) {
-        if (err) { return done(err); }
-        Object.keys(transactions).map(function(key) {
-          expect(transactions[key].customer).to.have.property('document_number', '36433809847');
-        });
-        done();
+        if (err) return done(err);
+        Object
+          .keys(transactions)
+          .map(function(key) {
+            expect(transactions[key].customer).to.have.property('document_number', '36433809847');
+          });
+          done();
         });
     });
 
     it('should return PagarmeError', function(done) {
-      pagarme.request({ path: '/unknow_path' }, function(err) {
-        expect(err.type).to.deep.equal([{ type: 'not_found', parameter_name: null, message: 'URL inválida.' }]);
+      pagarme.request({path: '/unknow_path'}, function(err) {
+        expect(err.type).to.deep.equal([{type: 'not_found', parameter_name: null, message: 'URL inválida.'}]);
         expect(err.statusCode).to.equal(404);
         done();
       });

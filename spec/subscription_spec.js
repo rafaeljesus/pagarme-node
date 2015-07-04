@@ -3,7 +3,7 @@
 'use strict';
 
 var async         = require('async')
-  , expect        = require('chai').use(require('chai-as-promised')).expect
+  , expect        = require('chai').expect
   , extend        = require('lodash').extend
   , pagarme       = require('../')('ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo')
   , Plan          = pagarme.Plan
@@ -44,7 +44,7 @@ describe('Subscription', function() {
         next(null, res);
       });
     }, function(res) {
-      var options = { id: res.id, amount: 2000 };
+      var options = {id: res.id, amount: 2000};
       Subscription.charge(options, function(err, res) {
         expect(res.amount).to.be.equal(2000);
         expect(res.installments).to.be.equal(1);
