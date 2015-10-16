@@ -10,10 +10,10 @@ Pagar.me Node.js library
 $ npm install pagarme
 ```
 ```js
-var pagarme = require('pagarme')('api_key');
+var pagarme = require('pagarme')('api_key')
 // or
-var Pagarme = require('pagarme').Pagarme;
-var pagarme = new Pagarme({key: 'api_key'});
+var Pagarme = require('pagarme').Pagarme
+var pagarme = new Pagarme({key: 'api_key'})
 ```
 
 
