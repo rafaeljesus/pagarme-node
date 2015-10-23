@@ -1,8 +1,8 @@
 'use strict';
 
-var gulp    = require('gulp');
-var plugins = require('gulp-load-plugins')();
-var argv    = require('yargs').argv;
+var gulp    = require('gulp')
+ , plugins = require('gulp-load-plugins')()
+ , argv    = require('yargs').argv;
 
 gulp.task('lint', function() {
   return gulp.src(['./lib/**/*.js', './spec/**/*[sS]pec.js', 'gulpfile.js'])
