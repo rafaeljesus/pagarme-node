@@ -30,10 +30,6 @@ describe('Pagarme', function() {
       expect(new Pagarme({key: key})).to.have.property('key', key);
     });
 
-    it('should read card encryption public key permission', function() {
-      expect(pagarme.cardEncryptionPubKey).to.be.ok;
-    });
-
     it('should compose models access', function() {
       expect(pagarme.Card).to.be.ok;
       expect(pagarme.BankAccount).to.be.ok;
