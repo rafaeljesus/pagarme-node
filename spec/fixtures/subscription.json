@@ -2,9 +2,9 @@
   "payment_method": "credit_card",
   "card_number": "4901720080344448",
   "card_holder_name": "Jose da Silva",
-  "card_expiration_date": "1015",
+  "card_expiration_date": "1021",
   "card_expiration_month": "10",
-  "card_expiration_year": "15",
+  "card_expiration_year": "21",
   "card_cvv": "314",
   "postback_url": "http://test.com/postback",
   "customer": {
