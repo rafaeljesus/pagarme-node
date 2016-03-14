@@ -71,5 +71,21 @@ describe('Recipient', function() {
       done();
     });
   });
+
+  it('should update a recipient', function (done) {
+    async.seq(function (next) {
+      Recipient.create(recipientFixture, function(err, res) {
+        expect(err).to.be.null;
+        next(null, res);
+      });
+    }, function (res) {
+      Recipient.update(res.id, { transfer_interval: 'monthly' }, function (err, res) {
+        if (err) return done(err);
+
+        expect(res).to.have.property('transfer_interval', 'monthly');
+        done();
+      });
+    })();
+  });
 });
 
