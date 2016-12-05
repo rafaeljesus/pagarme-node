@@ -1,14 +1,13 @@
-'use strict';
+'use strict'
 
-var expect            = require('chai').expect
-  , pagarme_resource  = require('../lib/pagarme_resource');
+const expect = require('chai').expect
+const pagarme_resource = require('../lib/pagarme_resource')
 
-describe('PagarmeResource', function() {
-
-  it('should expose base promisses', function() {
-    var methods = ['findBy', 'findById', 'create', 'update'];
-    methods.forEach(function(method) {
-      expect(pagarme_resource).itself.to.respondTo(method);
-    });
-  });
-});
+describe('PagarmeResource', () => {
+  it('should expose base promisses', () => {
+    const methods = ['findBy', 'findById', 'create', 'update']
+    methods.forEach((method) => {
+      expect(pagarme_resource).itself.to.respondTo(method)
+    })
+  })
+})

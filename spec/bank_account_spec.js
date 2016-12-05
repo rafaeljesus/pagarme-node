@@ -1,48 +1,47 @@
 /* jshint -W030 */
 
-'use strict';
+'use strict'
 
-var async       = require('async')
-  , expect      = require('chai').expect
-  , pagarme     = require('../')('ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo')
-  , BankAccount = pagarme.BankAccount;
+const async = require('async')
+const expect = require('chai').expect
+const pagarme = require('../')('ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo')
+const BankAccount = pagarme.BankAccount
 
-describe('BankAccount', function() {
+describe('BankAccount', () => {
+  let bankAccountFixture
 
-  var bankAccountFixture;
+  beforeEach(() => {
+    bankAccountFixture = require('./fixtures/bank_account')
+  })
 
-  beforeEach(function() {
-    bankAccountFixture = require('./fixtures/bank_account');
-  });
+  it('should create a bank account', (done) => {
+    BankAccount.create(bankAccountFixture, (err, res) => {
+      expect(res.id).to.be.ok
+      done()
+    })
+  })
 
-  it('should create a bank account', function(done) {
-    BankAccount.create(bankAccountFixture, function(err, res) {
-      expect(res.id).to.be.ok;
-      done();
-    });
-  });
+  it('should find by id', (done) => {
+    async.seq((next) => {
+      BankAccount.create(bankAccountFixture, (err, res) => {
+        expect(err).to.be.null
+        next(null, res)
+      })
+    }, (res) => {
+      BankAccount.findById(res.id, (err, res) => {
+        expect(res.id).to.be.ok
+        done()
+      })
+    })()
+  })
 
-  it('should find by id', function(done) {
-    async.seq(function(next) {
-      BankAccount.create(bankAccountFixture, function(err, res) {
-        expect(err).to.be.null;
-        next(null, res);
-      });
-    }, function(res) {
-      BankAccount.findById(res.id, function(err, res) {
-        expect(res.id).to.be.ok;
-        done();
-      });
-    })();
-  });
-
-  it('should search by criteria', function(done) {
-    var query = { bank_account: { agencia: 1935 }, page: 1, count: 10 };
-    BankAccount.findBy(query, function(err, accounts) {
-      Object.keys(accounts).map(function(key) {
-        expect(accounts[key]).to.have.property('agencia', '1935');
-      });
-      done();
-    });
-  });
-});
+  it('should search by criteria', (done) => {
+    const query = {bank_account: {agencia: 1935 }, page: 1, count: 10}
+    BankAccount.findBy(query, (err, accounts) => {
+      Object.keys(accounts).map((key) => {
+        expect(accounts[key]).to.have.property('agencia', '1935')
+      })
+      done()
+    })
+  })
+})
